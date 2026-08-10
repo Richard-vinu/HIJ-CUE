@@ -47,11 +47,11 @@ function PersonPicker({ people }: { people: Person[] }) {
         </div>
 
         <h1 className="text-[28px] font-medium tracking-[-0.02em] text-ink md:text-[32px]">
-          Who are you?
+          Welcome to the team
         </h1>
         <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
-          Pick your name to open your tasks. No password needed for the team
-          view.
+          Choose your name below to see your tasks. You’re all set — no
+          password needed.
         </p>
 
         <div className="mt-7">
