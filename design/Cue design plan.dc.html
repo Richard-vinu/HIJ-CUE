@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F8F9}a{color:#8C3B34}a:hover{color:#101729}</style></helmet>
+<div style="font-family:Archivo,system-ui,sans-serif;color:#101729;max-width:820px;margin:0 auto;padding:56px 32px 96px;font-size:15px;line-height:1.55">
+
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;color:#5A6172;margin-bottom:10px">Plan · before build · v1</div>
+<h1 style="font-size:30px;font-weight:500;margin:0 0 8px;letter-spacing:-0.02em">Cue — design plan</h1>
+<p style="margin:0 0 40px;color:#5A6172;max-width:60ch">Internal task tracker for the HIJ media, worship and production team. Mobile first. Name: keeping <strong style="font-weight:500;color:#101729">Cue</strong> — it is the production word for the moment something has to happen, it is short enough for a top bar, and it does not read as SaaS. Greenroom and Callsheet both name a place or a document rather than a deadline.</p>
+
+<h2 style="font-size:12px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;color:#5A6172;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #C1C4C9">01 Colour tokens</h2>
+<div style="display:grid;gap:0;margin:0 0 44px">
+  <div style="display:grid;grid-template-columns:44px 96px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="width:44px;height:28px;background:#101729;border-radius:3px"></div><code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">#101729</code><div><span style="font-weight:500">ink</span> <span style="color:#5A6172">— primary text, top bar, the single solid fill on primary buttons.</span></div></div>
+  <div style="display:grid;grid-template-columns:44px 96px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="width:44px;height:28px;background:#5A6172;border-radius:3px"></div><code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">#5A6172</code><div><span style="font-weight:500">ink-2</span> <span style="color:#5A6172">— secondary text, metadata, icon strokes. Derived from the grey family, dark enough on white.</span></div></div>
+  <div style="display:grid;grid-template-columns:44px 96px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="width:44px;height:28px;background:#C1C4C9;border-radius:3px"></div><code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">#C1C4C9</code><div><span style="font-weight:500">structure</span> <span style="color:#5A6172">— hairline dividers, input borders, disabled states.</span></div></div>
+  <div style="display:grid;grid-template-columns:44px 96px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="width:44px;height:28px;background:#F7F8F9;border:1px solid #C1C4C9;border-radius:3px"></div><code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">#F7F8F9</code><div><span style="font-weight:500">page</span> <span style="color:#5A6172">— app background, cool near-white. Also fills inactive filter chips.</span></div></div>
+  <div style="display:grid;grid-template-columns:44px 96px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="width:44px;height:28px;background:#FFFFFF;border:1px solid #C1C4C9;border-radius:3px"></div><code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">#FFFFFF</code><div><span style="font-weight:500">surface</span> <span style="color:#5A6172">— list and detail surfaces, dropdown sheets.</span></div></div>
+  <div style="display:grid;grid-template-columns:44px 96px 1fr;gap:16px;align-items:center;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="width:44px;height:28px;background:#8C3B34;border-radius:3px"></div><code style="font-family:'IBM Plex Mono',monospace;font-size:12.5px">#8C3B34</code><div><span style="font-weight:500">late</span> <span style="color:#5A6172">— muted oxblood. Overdue and destructive only. Nothing else may use it.</span></div></div>
+</div>
+
+<h2 style="font-size:12px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;color:#5A6172;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #C1C4C9">02 Type</h2>
+<p style="margin:0 0 18px;color:#5A6172;max-width:62ch"><strong style="color:#101729;font-weight:500">Archivo</strong> for the interface and <strong style="color:#101729;font-weight:500">IBM Plex Mono</strong> for dates, file sizes and timestamps: Archivo is a slightly narrow grotesque, so long song titles fit on a 360px row without truncating, and its large x-height holds up at 14px on a phone; Plex Mono has true tabular figures so due dates and file sizes line up in a column and can be scanned without reading.</p>
+<div style="border:1px solid #C1C4C9;background:#fff;border-radius:6px;padding:20px 22px;margin:0 0 44px">
+  <div style="display:grid;gap:12px">
+    <div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline"><code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">22 / 500</code><div style="font-size:22px;font-weight:500;letter-spacing:-0.01em">Page title</div></div>
+    <div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline"><code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">16 / 500</code><div style="font-size:16px;font-weight:500">Load lyrics for Sunday 16th into ProPresenter</div></div>
+    <div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline"><code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">14 / 400</code><div style="font-size:14px">Body and description. Sentence case everywhere.</div></div>
+    <div style="display:grid;grid-template-columns:110px 1fr;gap:16px;align-items:baseline"><code style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">13 mono</code><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6172">Sat 16 Aug · 2.4 MB · 09:12</div></div>
+  </div>
+</div>
+
+<h2 style="font-size:12px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;color:#5A6172;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #C1C4C9">03 The overdue treatment</h2>
+<p style="margin:0 0 18px;color:#5A6172;max-width:62ch">No badge on the right. The row itself changes state: an overdue task becomes a solid oxblood band across the full width of the list, text reversed out in near-white, and the due date is replaced by how late it is — <em>4 days late</em>, not <em>Tue 12 Aug</em>. Row height and layout are identical to a normal row, so nothing jumps; the list reads as a stack of quiet white rows with dark bars where the problems are, legible from across a room. Everything else in the product stays monochrome.</p>
+<div style="border:1px solid #C1C4C9;border-radius:6px;overflow:hidden;background:#fff;margin:0 0 12px">
+  <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid #C1C4C9"><div><div style="font-size:15px;font-weight:500">Send song list to media team</div><div style="font-size:13px;color:#5A6172;margin-top:3px">Dani M · To do</div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6172">Fri 14 Aug</div></div>
+  <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 16px;background:#8C3B34;color:#fff"><div><div style="font-size:15px;font-weight:500">Load lyrics into ProPresenter</div><div style="font-size:13px;color:rgba(255,255,255,0.75);margin-top:3px">Sam K · To do</div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500">4 days late</div></div>
+  <div style="display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:14px 16px;border-top:1px solid #C1C4C9"><div><div style="font-size:15px;font-weight:500">Check lapel batteries</div><div style="font-size:13px;color:#5A6172;margin-top:3px">Jo T · In progress</div></div><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6172">Sun 16 Aug</div></div>
+</div>
+<p style="margin:0 0 44px;font-size:13.5px;color:#5A6172;max-width:62ch">Risk I want to flag: if the team lets ten things slip, the list becomes a wall of oxblood. I think that is honest, but the alternative is a hairline oxblood rule plus reversed date only. Tell me if you want the quieter version.</p>
+
+<h2 style="font-size:12px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;color:#5A6172;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #C1C4C9">04 Wireframes</h2>
+<div style="display:grid;gap:24px;margin:0 0 44px">
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172;margin-bottom:8px">Mobile · 360px</div><pre style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.5;background:#fff;border:1px solid #C1C4C9;border-radius:6px;padding:16px;margin:0;overflow-x:auto">┌──────────────────────────────┐
+│ [logo slot]  Cue        (SK) │  ink bar, 56px
+├──────────────────────────────┤
+│ My tasks | All tasks         │  2 tabs, 44px tall
+├──────────────────────────────┤
+│ Load lyrics into ProPres…    │
+│ Sam K · To do    4 days late │  ← oxblood band
+├──────────────────────────────┤
+│ Check lapel batteries        │
+│ Jo T · In progress  Sun 16   │
+├──────────────────────────────┤
+│ Send song list               │
+│ Dani M · To do      Fri 21   │
+└──────────────────────────────┘
+        ( + New task )  fixed bottom right</pre></div>
+<div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172;margin-bottom:8px">Desktop · adaptation, not a redesign</div><pre style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;line-height:1.5;background:#fff;border:1px solid #C1C4C9;border-radius:6px;padding:16px;margin:0;overflow-x:auto">┌────────────────────────────────────────────────────────────────┐
+│ [logo]  Cue          My tasks   All tasks   Team    (SK) Sam K │
+├────────────────────────────────────────────────────────────────┤
+│ My tasks                                    [ Create task ]    │
+│ Assignee ▾   Status ▾                                          │
+├──────────────────────────┬─────────┬──────────┬────────────────┤
+│ Load lyrics into ProPre… │ Sam K   │ To do    │   4 days late  │ ← band
+├──────────────────────────┼─────────┼──────────┼────────────────┤
+│ Check lapel batteries    │ Jo T    │ In prog. │   Sun 16 Aug   │
+├──────────────────────────┼─────────┼──────────┼────────────────┤
+│ Send song list           │ Dani M  │ To do    │   Fri 21 Aug   │
+└──────────────────────────┴─────────┴──────────┴────────────────┘
+ 8–10 rows visible without scrolling · same row anatomy as mobile</pre></div>
+</div>
+
+<h2 style="font-size:12px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;color:#5A6172;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #C1C4C9">05 Checked against "do not do these"</h2>
+<p style="margin:0 0 12px;color:#5A6172;max-width:62ch">Two things I changed after reviewing the plan against that list:</p>
+<ul style="margin:0 0 44px;padding-left:20px;color:#5A6172;max-width:62ch"><li style="margin-bottom:8px">My first instinct was a 3px oxblood left border on overdue rows. That is the generic tell — a coloured accent stripe on a card. Replaced with the full reversed band.</li><li style="margin-bottom:8px">I had a status pill in three colours. Cut: status is text, and the only colour in the list is the overdue band. Colour that means one thing is worth more than colour everywhere.</li><li>Icons will be a single outline set at 20px (Lucide, 1.5px stroke), stroke in ink-2. Logo slot is an outlined 28px box marked "logo" in the top bar — I am not inventing a mark.</li></ul>
+
+<h2 style="font-size:12px;font-weight:500;font-family:'IBM Plex Mono',monospace;letter-spacing:0.08em;color:#5A6172;margin:0 0 16px;padding-bottom:8px;border-bottom:1px solid #C1C4C9">06 What I'd mock next</h2>
+<p style="margin:0 0 8px;color:#5A6172;max-width:62ch">Mobile and desktop for: my tasks, all tasks with filters, task detail with comments and attachments, create task, upload in progress, and the empty state. I have a short form open with a few questions before I build.</p>
+
+</div>
+</x-dc>
+</body>
+</html>

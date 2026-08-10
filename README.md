@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HIJ Cue
 
-## Getting Started
+Internal task tracker for the Hope in Jesus (HIJ) media, worship and production team.
 
-First, run the development server:
+- **Mobile team view** (`/`) — pick your name (no password), My / All tasks, detail, status, comments, file attachments
+- **Admin panel** (`/admin`) — email/password login, task CRUD, team management, filters, files, comments
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Stack: Next.js · Supabase · shadcn/ui · Vercel-ready
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Run the schema** in Supabase → SQL Editor → paste and run `supabase/schema.sql`  
+   (creates tables, RLS, storage bucket, seed people + tasks)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Add service role key** to `.env.local`  
+   Supabase → Project Settings → API → `service_role` (or secret key):
 
-## Learn More
+   ```
+   SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Seed admin auth users**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   npm run seed:admins
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   Creates / resets:
+   - `anish@hij.church`
+   - `sushma@hij.church`
+   - `deepak@hij.church`  
+   Password: `CueAdmin2026!` (override with `ADMIN_SEED_PASSWORD`)
 
-## Deploy on Vercel
+4. **Env already set** (publishable):
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://zubfhrxvjvpcgcseyrqt.supabase.co
+   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=…
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Deploy on Vercel — set the same env vars (including `SUPABASE_SERVICE_ROLE_KEY` for server actions that need it; publishable keys for the client).
+
+## Design
+
+Tokens and overdue treatment follow `Cue design plan` / `HIJ Cue` mockups:
+
+- Ink `#101729`, late oxblood `#8C3B34` full-row band
+- Archivo + IBM Plex Mono
+- Status as text only (no colour pills)
+
+## Scripts
+
+| Command | Purpose |
+|---|---|
+| `npm run seed:admins` | Create/link admin Auth users |
+| `npm run build` | Production build |

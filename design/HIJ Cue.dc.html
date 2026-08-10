@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#F7F8F9}a{color:#8C3B34}a:hover{color:#101729}*:focus-visible{outline:2px solid #101729;outline-offset:2px}@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}</style></helmet>
+<div style="font-family:Archivo,system-ui,sans-serif;color:#101729;padding:36px 40px 80px;background:#F7F8F9">
+
+<div style="display:flex;align-items:baseline;gap:12px;margin:0 0 6px"><h1 style="font-size:22px;font-weight:500;margin:0;letter-spacing:-0.01em">HIJ Cue — clickable mockup</h1><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">v1 · Mon 10 Aug 2026</span></div>
+<p style="margin:0 0 20px;font-size:14px;color:#5A6172;max-width:70ch">Tap through the phone. Rows open, status changes are optimistic, comments post, and the attach button runs a real upload state. The desktop panel on the right is the same list adapted, not a second design.</p>
+
+<div style="display:flex;flex-wrap:wrap;gap:20px 28px;align-items:center;margin:0 0 28px;padding:14px 0;border-top:1px solid #C1C4C9;border-bottom:1px solid #C1C4C9">
+  <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">Viewing as</span>
+    <div style="display:flex;gap:8px"><sc-for list="{{ viewers }}" as="v" hint-placeholder-count="2"><button onClick="{{ v.pick }}" style="font-family:Archivo,sans-serif;font-size:13px;height:32px;padding:0 12px;border-radius:6px;cursor:pointer;border:1px solid {{ v.bc }};background:{{ v.bg }};color:{{ v.fg }}">{{ v.label }}</button></sc-for></div>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">Jump to</span>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ jumps }}" as="j" hint-placeholder-count="7"><button onClick="{{ j.go }}" style="font-family:Archivo,sans-serif;font-size:13px;height:32px;padding:0 12px;border-radius:6px;cursor:pointer;border:1px solid #C1C4C9;background:#fff;color:#101729">{{ j.label }}</button></sc-for></div>
+  </div>
+</div>
+
+<div style="display:flex;gap:44px;align-items:flex-start;flex-wrap:wrap">
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">Phone · primary target</div>
+<x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" dark="{{ true }}" hint-size="402px,874px">
+<div style="min-height:100%;display:flex;flex-direction:column;background:#F7F8F9;font-family:Archivo,system-ui,sans-serif;color:#101729">
+
+<sc-if value="{{ isSignin }}" hint-placeholder-val="{{ false }}">
+  <div style="display:flex;flex-direction:column;gap:0;background:#fff;min-height:100%">
+    <div style="height:62px;background:#101729;flex:none"></div>
+    <div style="padding:40px 24px 24px;display:flex;flex-direction:column">
+    <img src="logo-seal.png" alt="Hope in Jesus Apostolic Church of Christ" style="width:56px;height:56px;border-radius:50%;display:block" />
+    <h2 style="font-size:22px;font-weight:500;margin:22px 0 6px;letter-spacing:-0.01em">Sign in to HIJ Cue</h2>
+    <p style="font-size:14px;color:#5A6172;margin:0 0 28px">Media, worship and production team.</p>
+    <label style="font-size:13px;font-weight:500;margin-bottom:6px" for="cue-email">Email</label>
+    <input id="cue-email" type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="prasthuthi@hij.church" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;padding:0 12px;font-family:Archivo,sans-serif;font-size:15px;color:#101729;background:#fff;margin-bottom:16px" />
+    <label style="font-size:13px;font-weight:500;margin-bottom:6px" for="cue-pw">Password</label>
+    <input id="cue-pw" type="password" value="{{ pw }}" onChange="{{ onPw }}" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;padding:0 12px;font-family:Archivo,sans-serif;font-size:15px;color:#101729;background:#fff" />
+    <sc-if value="{{ signinError }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:#8C3B34;margin-top:8px">{{ signinError }}</div></sc-if>
+    <button onClick="{{ doSignin }}" style="height:48px;margin-top:24px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:15px;font-weight:500;cursor:pointer">Sign in</button>
+    <button style="height:44px;margin-top:8px;background:none;border:none;color:#5A6172;font-family:Archivo,sans-serif;font-size:13.5px;cursor:pointer;text-decoration:underline;text-underline-offset:3px">Forgot your password?</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ inApp }}" hint-placeholder-val="{{ true }}">
+<div style="display:flex;flex-direction:column;min-height:100%">
+  <div style="display:flex;align-items:center;gap:10px;height:56px;padding:62px 14px 0;box-sizing:content-box;background:#101729;color:#fff;flex:none">
+    <img src="logo-seal.png" alt="" style="width:28px;height:28px;border-radius:50%;display:block;flex:none" />
+    <div style="font-size:16px;font-weight:500;letter-spacing:-0.01em">HIJ Cue</div>
+    <div style="flex:1"></div>
+    <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(255,255,255,0.35);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500">{{ meInitials }}</div>
+  </div>
+
+  <sc-if value="{{ isList }}" hint-placeholder-val="{{ true }}">
+  <div style="display:flex;flex-direction:column;flex:1">
+    <div style="display:flex;background:#fff;border-bottom:1px solid #C1C4C9;flex:none">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3"><button onClick="{{ t.go }}" style="flex:1;height:46px;background:none;border:none;border-bottom:2px solid {{ t.bc }};font-family:Archivo,sans-serif;font-size:14px;font-weight:{{ t.fw }};color:{{ t.fg }};cursor:pointer">{{ t.label }}</button></sc-for>
+    </div>
+
+    <sc-if value="{{ showFilters }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;gap:8px;padding:10px 14px;background:#fff;border-bottom:1px solid #C1C4C9;flex:none">
+        <select value="{{ fAssignee }}" onChange="{{ onFAssignee }}" style="flex:1;height:44px;border:1px solid #C1C4C9;border-radius:6px;background:#F7F8F9;font-family:Archivo,sans-serif;font-size:14px;color:#101729;padding:0 8px"><sc-for list="{{ assigneeOptions }}" as="o" hint-placeholder-count="4"><option value="{{ o.value }}">{{ o.label }}</option></sc-for></select>
+        <select value="{{ fStatus }}" onChange="{{ onFStatus }}" style="flex:1;height:44px;border:1px solid #C1C4C9;border-radius:6px;background:#F7F8F9;font-family:Archivo,sans-serif;font-size:14px;color:#101729;padding:0 8px"><sc-for list="{{ statusOptions }}" as="o" hint-placeholder-count="4"><option value="{{ o.value }}">{{ o.label }}</option></sc-for></select>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isTeam }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#fff;flex:1">
+        <sc-if value="{{ meIsAdmin }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-bottom:1px solid #C1C4C9">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">{{ teamCount }} people · you are an admin</div>
+            <button style="height:36px;padding:0 12px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:13px;font-weight:500;cursor:pointer">Add person</button>
+          </div>
+        </sc-if>
+        <sc-for list="{{ team }}" as="p" hint-placeholder-count="6">
+          <div style="display:flex;align-items:center;gap:12px;padding:11px 14px;border-bottom:1px solid #C1C4C9">
+            <div style="width:36px;height:36px;flex:none;border-radius:50%;background:#F7F8F9;border:1px solid #C1C4C9;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6172">{{ p.initials }}</div>
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:15px;font-weight:500">{{ p.name }}</span><sc-if value="{{ p.admin }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#5A6172;border:1px solid #C1C4C9;border-radius:3px;padding:1px 4px">admin</span></sc-if></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6172;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ p.email }}</div>
+              <sc-if value="{{ p.showAddRole }}" hint-placeholder-val="{{ false }}"><button style="margin-top:4px;background:none;border:none;padding:0;font-family:Archivo,sans-serif;font-size:13px;color:#5A6172;cursor:pointer;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px">Add role</button></sc-if>
+              <sc-if value="{{ p.showNoRole }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:#5A6172;margin-top:4px">Role not set</div></sc-if>
+            </div>
+            <sc-if value="{{ p.canRemove }}" hint-placeholder-val="{{ false }}"><button aria-label="Remove person" style="width:44px;height:44px;flex:none;background:none;border:none;cursor:pointer;color:#5A6172;display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 5l14 14M19 5L5 19" /></svg></button></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isTasks }}" hint-placeholder-val="{{ true }}">
+      <div style="background:#fff;flex:1;border-bottom:1px solid #C1C4C9">
+        <sc-for list="{{ listTasks }}" as="t" hint-placeholder-count="6">
+          <sc-if value="{{ t.late }}" hint-placeholder-val="{{ false }}">
+            <div role="button" tabindex="0" onClick="{{ t.open }}" style="display:flex;align-items:center;gap:12px;padding:13px 14px;background:#8C3B34;color:#fff;border-bottom:1px solid rgba(255,255,255,0.28);cursor:pointer;min-height:44px">
+              <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500;line-height:1.3">{{ t.title }}</div><div style="font-size:13px;color:rgba(255,255,255,0.78);margin-top:3px">{{ t.meta }}</div></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;flex:none">{{ t.dateLabel }}</div>
+            </div>
+          </sc-if>
+          <sc-if value="{{ t.ontime }}" hint-placeholder-val="{{ true }}">
+            <div role="button" tabindex="0" onClick="{{ t.open }}" style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-bottom:1px solid #C1C4C9;background:#fff;cursor:pointer;min-height:44px">
+              <div style="flex:1;min-width:0"><div style="font-size:15px;font-weight:500;line-height:1.3;color:{{ t.titleColor }};text-decoration:{{ t.strike }}">{{ t.title }}</div><div style="font-size:13px;color:#5A6172;margin-top:3px">{{ t.meta }}</div></div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6172;flex:none">{{ t.dateLabel }}</div>
+            </div>
+          </sc-if>
+        </sc-for>
+        <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:56px 24px;text-align:center">
+            <div style="font-size:15px;font-weight:500;margin-bottom:6px">{{ emptyTitle }}</div>
+            <div style="font-size:14px;color:#5A6172;margin-bottom:20px">{{ emptyBody }}</div>
+            <button onClick="{{ goCreate }}" style="height:44px;padding:0 18px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Create task</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="position:sticky;bottom:0;padding:10px 14px 40px;background:#F7F8F9;border-top:1px solid #C1C4C9;flex:none">
+        <button onClick="{{ goCreate }}" style="width:100%;height:46px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:15px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12h14" /></svg>Create task</button>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;display:flex;flex-direction:column;background:#fff">
+    <div style="display:flex;align-items:center;gap:4px;height:48px;padding:0 6px;border-bottom:1px solid #C1C4C9;flex:none">
+      <button onClick="{{ goBack }}" aria-label="Back to list" style="width:44px;height:44px;background:none;border:none;cursor:pointer;color:#101729;display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">{{ task.ref }}</div>
+    </div>
+    <div style="padding:18px 16px 24px">
+      <h2 style="font-size:20px;font-weight:500;margin:0;line-height:1.3;letter-spacing:-0.01em">{{ task.title }}</h2>
+      <sc-if value="{{ task.late }}" hint-placeholder-val="{{ false }}">
+        <div style="margin:14px 0 0;background:#8C3B34;color:#fff;padding:10px 12px;border-radius:6px;display:flex;align-items:baseline;gap:8px"><span style="font-size:14px;font-weight:500">{{ task.dateLabel }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:rgba(255,255,255,0.78)">due {{ task.dueFull }}</span></div>
+      </sc-if>
+      <div style="margin-top:16px;border-top:1px solid #C1C4C9">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="font-size:13px;color:#5A6172;width:82px;flex:none">Assignee</div><div style="width:26px;height:26px;border-radius:50%;background:#F7F8F9;border:1px solid #C1C4C9;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#5A6172">{{ task.assigneeInitials }}</div><div style="font-size:15px;flex:1">{{ task.assignee }}</div><span style="font-size:13px;color:#5A6172;text-decoration:underline;text-underline-offset:3px">Change</span></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #C1C4C9"><div style="font-size:13px;color:#5A6172;width:82px;flex:none">Due</div><div style="font-family:'IBM Plex Mono',monospace;font-size:14px;flex:1;color:{{ task.dueColor }}">{{ task.dueFull }}</div><span style="font-size:13px;color:#5A6172;text-decoration:underline;text-underline-offset:3px">Change</span></div>
+      </div>
+      <div style="font-size:13px;color:#5A6172;margin:18px 0 8px">Status</div>
+      <div style="display:flex;gap:6px"><sc-for list="{{ statusPicker }}" as="s" hint-placeholder-count="3"><button onClick="{{ s.set }}" style="flex:1;height:44px;border-radius:6px;cursor:pointer;font-family:Archivo,sans-serif;font-size:14px;font-weight:{{ s.fw }};border:1px solid {{ s.bc }};background:{{ s.bg }};color:{{ s.fg }}">{{ s.label }}</button></sc-for></div>
+      <div style="font-size:13px;color:#5A6172;margin:22px 0 6px">Description</div>
+      <p style="font-size:14.5px;line-height:1.55;margin:0;text-wrap:pretty">{{ task.description }}</p>
+
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin:26px 0 8px;padding-top:18px;border-top:1px solid #C1C4C9"><div style="font-size:13px;color:#5A6172">Files</div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6172">{{ task.fileCount }}</span></div>
+      <sc-for list="{{ files }}" as="f" hint-placeholder-count="2">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #C1C4C9">
+          <sc-if value="{{ f.isImage }}" hint-placeholder-val="{{ false }}"><div style="width:40px;height:40px;flex:none;border-radius:4px;background:#C1C4C9;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#101729">IMG</div></sc-if>
+          <sc-if value="{{ f.isFile }}" hint-placeholder-val="{{ true }}"><div style="width:40px;height:40px;flex:none;border-radius:4px;border:1px solid #C1C4C9;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5A6172">{{ f.ext }}</div></sc-if>
+          <div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ f.name }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6172;margin-top:2px">{{ f.meta }}</div></div>
+          <button aria-label="Download file" style="width:44px;height:44px;flex:none;background:none;border:none;cursor:pointer;color:#5A6172;display:grid;place-items:center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4v11m0 0l-4-4m4 4l4-4M5 19h14" /></svg></button>
+        </div>
+      </sc-for>
+      <sc-for list="{{ uploads }}" as="u" hint-placeholder-count="0">
+        <div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #C1C4C9">
+          <div style="width:40px;height:40px;flex:none;border-radius:4px;border:1px solid #C1C4C9;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:#5A6172">{{ u.ext }}</div>
+          <div style="flex:1;min-width:0">
+            <div style="font-size:14px;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ u.name }}</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:6px"><div style="flex:1;height:3px;background:#C1C4C9;border-radius:2px;overflow:hidden"><div style="height:3px;background:#101729;width:{{ u.pct }}%"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5A6172">{{ u.pctLabel }}</span></div>
+          </div>
+        </div>
+      </sc-for>
+      <button onClick="{{ attach }}" style="width:100%;height:46px;margin-top:14px;background:#fff;border:1px solid #C1C4C9;border-radius:6px;font-family:Archivo,sans-serif;font-size:14.5px;font-weight:500;color:#101729;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 12l6.5-6.5a3.5 3.5 0 015 5L11 18.5a5 5 0 01-7-7L11 4.5" /></svg>Attach file</button>
+
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin:28px 0 4px;padding-top:18px;border-top:1px solid #C1C4C9"><div style="font-size:13px;color:#5A6172">Comments</div><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6172">{{ task.commentCount }}</span></div>
+      <sc-for list="{{ comments }}" as="c" hint-placeholder-count="2">
+        <div style="display:flex;gap:10px;padding:14px 0;border-bottom:1px solid #C1C4C9">
+          <div style="width:26px;height:26px;flex:none;border-radius:50%;background:#F7F8F9;border:1px solid #C1C4C9;display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#5A6172">{{ c.initials }}</div>
+          <div style="flex:1;min-width:0"><div style="display:flex;align-items:baseline;gap:8px"><span style="font-size:13.5px;font-weight:500">{{ c.author }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5A6172">{{ c.when }}</span></div><p style="font-size:14.5px;line-height:1.5;margin:4px 0 0;text-wrap:pretty">{{ c.text }}</p></div>
+        </div>
+      </sc-for>
+      <textarea value="{{ commentDraft }}" onChange="{{ onComment }}" rows="2" placeholder="Song list is in the shared drive" style="width:100%;box-sizing:border-box;margin-top:14px;border:1px solid #C1C4C9;border-radius:6px;padding:10px 12px;font-family:Archivo,sans-serif;font-size:14.5px;color:#101729;resize:vertical"></textarea>
+      <button onClick="{{ postComment }}" style="height:44px;margin-top:8px;padding:0 16px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Post comment</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isCreate }}" hint-placeholder-val="{{ false }}">
+  <div style="flex:1;background:#fff;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:4px;height:48px;padding:0 6px;border-bottom:1px solid #C1C4C9;flex:none">
+      <button onClick="{{ goBack }}" aria-label="Back to list" style="width:44px;height:44px;background:none;border:none;cursor:pointer;color:#101729;display:grid;place-items:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 5l-7 7 7 7" /></svg></button>
+      <div style="font-size:15px;font-weight:500">New task</div>
+    </div>
+    <div style="padding:18px 16px 24px;display:flex;flex-direction:column">
+      <label style="font-size:13px;font-weight:500;margin-bottom:6px" for="nt-title">Title</label>
+      <input id="nt-title" value="{{ draftTitle }}" onChange="{{ onDraftTitle }}" placeholder="Send lyrics for new songs" style="height:46px;border:1px solid {{ titleBorder }};border-radius:6px;padding:0 12px;font-family:Archivo,sans-serif;font-size:15px;color:#101729" />
+      <sc-if value="{{ titleError }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:#8C3B34;margin-top:6px">{{ titleError }}</div></sc-if>
+      <label style="font-size:13px;font-weight:500;margin:18px 0 6px" for="nt-desc">Description</label>
+      <textarea id="nt-desc" rows="3" value="{{ draftDesc }}" onChange="{{ onDraftDesc }}" placeholder="Two new songs this Sunday, lyrics need to be in ProPresenter before Saturday run-through" style="border:1px solid #C1C4C9;border-radius:6px;padding:10px 12px;font-family:Archivo,sans-serif;font-size:14.5px;color:#101729;resize:vertical"></textarea>
+      <label style="font-size:13px;font-weight:500;margin:18px 0 6px" for="nt-who">Assignee</label>
+      <select id="nt-who" value="{{ draftAssignee }}" onChange="{{ onDraftAssignee }}" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;background:#fff;font-family:Archivo,sans-serif;font-size:15px;color:#101729;padding:0 10px"><sc-for list="{{ people }}" as="p" hint-placeholder-count="6"><option value="{{ p.id }}">{{ p.name }}</option></sc-for></select>
+      <label style="font-size:13px;font-weight:500;margin:18px 0 6px" for="nt-due">Due date</label>
+      <input id="nt-due" type="date" value="{{ draftDue }}" onChange="{{ onDraftDue }}" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;padding:0 12px;font-family:'IBM Plex Mono',monospace;font-size:14px;color:#101729" />
+      <button onClick="{{ createTask }}" style="height:48px;margin-top:26px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:15px;font-weight:500;cursor:pointer">Create task</button>
+      <button onClick="{{ goBack }}" style="height:44px;margin-top:6px;background:none;border:none;color:#5A6172;font-family:Archivo,sans-serif;font-size:14px;cursor:pointer">Cancel</button>
+    </div>
+  </div>
+  </sc-if>
+</div>
+</sc-if>
+
+</div>
+</x-import>
+</div>
+
+<div style="display:flex;flex-direction:column;gap:10px">
+<div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172">Desktop · the same list, adapted</div>
+<div style="width:1180px;max-width:100%;border:1px solid #C1C4C9;border-radius:8px;overflow:hidden;background:#fff">
+  <div style="display:flex;align-items:center;gap:14px;height:56px;padding:0 20px;background:#101729;color:#fff">
+    <img src="logo-seal.png" alt="" style="width:28px;height:28px;border-radius:50%;display:block" />
+    <div style="font-size:16px;font-weight:500">HIJ Cue</div>
+    <div style="display:flex;gap:4px;margin-left:20px"><sc-for list="{{ desktopNav }}" as="d" hint-placeholder-count="3"><span style="font-size:14px;padding:6px 10px;border-radius:6px;color:{{ d.fg }};background:{{ d.bg }}">{{ d.label }}</span></sc-for></div>
+    <div style="flex:1"></div>
+    <div style="display:flex;align-items:center;gap:8px"><div style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,0.35);display:grid;place-items:center;font-family:'IBM Plex Mono',monospace;font-size:10.5px">{{ meInitials }}</div><span style="font-size:14px">{{ meName }}</span></div>
+  </div>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 20px 14px">
+    <div><h3 style="font-size:20px;font-weight:500;margin:0;letter-spacing:-0.01em">All tasks</h3><div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6172;margin-top:4px">{{ desktopCount }} · overdue first, then by due date</div></div>
+    <button style="height:40px;padding:0 16px;background:#101729;color:#fff;border:none;border-radius:6px;font-family:Archivo,sans-serif;font-size:14px;font-weight:500;cursor:pointer">Create task</button>
+  </div>
+  <div style="display:flex;gap:8px;padding:0 20px 14px"><div style="height:36px;display:flex;align-items:center;gap:6px;padding:0 12px;border:1px solid #C1C4C9;border-radius:6px;font-size:13.5px;color:#5A6172">Assignee: anyone<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" /></svg></div><div style="height:36px;display:flex;align-items:center;gap:6px;padding:0 12px;border:1px solid #C1C4C9;border-radius:6px;font-size:13.5px;color:#5A6172">Status: any<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6" /></svg></div></div>
+  <div style="display:grid;grid-template-columns:1fr 190px 130px 150px;padding:8px 20px;border-top:1px solid #C1C4C9;border-bottom:1px solid #C1C4C9;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6172"><div>Task</div><div>Assignee</div><div>Status</div><div style="text-align:right">Due</div></div>
+  <sc-for list="{{ desktopTasks }}" as="t" hint-placeholder-count="7">
+    <sc-if value="{{ t.late }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:1fr 190px 130px 150px;align-items:center;padding:14px 20px;background:#8C3B34;color:#fff;border-bottom:1px solid rgba(255,255,255,0.28)"><div style="font-size:15px;font-weight:500">{{ t.title }}</div><div style="font-size:14px;color:rgba(255,255,255,0.85)">{{ t.assignee }}</div><div style="font-size:14px;color:rgba(255,255,255,0.85)">{{ t.status }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;font-weight:500;text-align:right">{{ t.dateLabel }}</div></div>
+    </sc-if>
+    <sc-if value="{{ t.ontime }}" hint-placeholder-val="{{ true }}">
+      <div style="display:grid;grid-template-columns:1fr 190px 130px 150px;align-items:center;padding:14px 20px;border-bottom:1px solid #C1C4C9"><div style="font-size:15px;font-weight:500;color:{{ t.titleColor }};text-decoration:{{ t.strike }}">{{ t.title }}</div><div style="font-size:14px;color:#5A6172">{{ t.assignee }}</div><div style="font-size:14px;color:#5A6172">{{ t.status }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:#5A6172;text-align:right">{{ t.dateLabel }}</div></div>
+    </sc-if>
+  </sc-for>
+</div>
+<p style="margin:2px 0 0;font-size:13px;color:#5A6172;max-width:66ch">Ten rows visible without scrolling, same row anatomy as the phone. The overdue band runs the full width of the table, so it reads as a bar rather than a badge.</p>
+</div>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1760,&quot;height&quot;:1100}}">
+const TODAY = new Date(2026, 7, 10);
+const DAY = 86400000;
+
+const PEOPLE = [
+  { id: 'anish', name: 'Pastor Anish', admin: true },
+  { id: 'baji', name: 'Baji' },
+  { id: 'elvin', name: 'Elvin' },
+  { id: 'jayashree', name: 'Jayashree' },
+  { id: 'jeswin', name: 'Jeswin' },
+  { id: 'prasthuthi', name: 'Prasthuthi' },
+  { id: 'sushma', name: 'Sushma', admin: true },
+  { id: 'nikhil', name: 'Nikhil' },
+  { id: 'deepak', name: 'Deepak', admin: true },
+  { id: 'asher', name: 'Asher' },
+].map(p => ({ ...p, email: p.id + '@hij.church' }));
+
+const SEED = [
+  { id: 1, title: 'Song list in running order', assignee: 'prasthuthi', due: '2026-08-07', status: 'To do',
+    description: 'Final running order for Sunday 16 August, including the opening and the response after the message.',
+    files: [
+      { name: 'Song list - 9 Aug.pdf', size: '84 KB', by: 'Prasthuthi' },
+      { name: 'Running order photo.jpg', size: '1.2 MB', by: 'Baji', image: true },
+    ],
+    comments: [
+      { by: 'baji', when: 'Fri 7 Aug · 21:14', text: 'Anything for me to load yet? Rehearsal is Saturday morning.' },
+      { by: 'prasthuthi', when: 'Sat 8 Aug · 08:02', text: 'Order is set, I am checking two keys with the team and then it goes up here.' },
+    ] },
+  { id: 2, title: 'Share whole day schedule with timings', assignee: 'asher', due: '2026-08-08', status: 'To do',
+    description: 'Full Sunday timings from setup through to pack down, so media and sound know when they are needed.', files: [], comments: [] },
+  { id: 3, title: 'Send lyrics for new songs', assignee: 'prasthuthi', due: '2026-08-12', status: 'In progress',
+    description: 'Two new songs this month. Lyrics need to be in ProPresenter before the Saturday run-through.',
+    files: [{ name: 'New songs lyrics.docx', size: '32 KB', by: 'Prasthuthi' }],
+    comments: [{ by: 'elvin', when: 'Sun 9 Aug · 19:40', text: 'Send them as text if easier, I can format the slides.' }] },
+  { id: 4, title: 'Confirm Bible version for the message', assignee: 'anish', due: '2026-08-13', status: 'To do',
+    description: 'So the verse slides match what is read from the platform.', files: [], comments: [] },
+  { id: 5, title: 'Mark which songs are fast and which are slow', assignee: 'prasthuthi', due: '2026-08-14', status: 'To do',
+    description: 'Lighting and camera need the pace of each song to plan looks and shots.', files: [], comments: [] },
+  { id: 6, title: 'Share announcement and promo videos', assignee: 'anish', due: '2026-08-16', status: 'To do',
+    description: 'Any video that plays before or after the message, uploaded here by Friday night.',
+    files: [{ name: 'Youth camp promo.mp4', size: '48.6 MB', by: 'Nikhil' }], comments: [] },
+  { id: 7, title: 'Post dress code for upcoming services', assignee: 'sushma', due: '2026-08-05', status: 'Done',
+    description: 'Dress code for the next four Sundays, shared with the whole team.', files: [], comments: [] },
+];
+
+const STATUSES = ['To do', 'In progress', 'Done'];
+
+const initials = n => n.replace('Pastor ', '').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+const person = id => PEOPLE.find(p => p.id === id) || PEOPLE[0];
+const fmt = d => d.toLocaleDateString('en-AU', { weekday: 'short', day: 'numeric', month: 'short' });
+const ext = n => (n.split('.').pop() || '').toUpperCase().slice(0, 4);
+
+class Component extends DCLogic {
+  state = {
+    screen: 'signin', tab: 'my', me: 'prasthuthi',
+    email: '', pw: '', signinError: '',
+    fAssignee: 'all', fStatus: 'all',
+    tasks: SEED, activeId: 1,
+    commentDraft: '', uploads: [],
+    draft: { title: '', desc: '', assignee: 'baji', due: '2026-08-15' }, titleError: '',
+  };
+
+  decorate(t) {
+    const due = new Date(t.due + 'T00:00');
+    const days = Math.round((TODAY - due) / DAY);
+    const late = t.status !== 'Done' && days > 0;
+    return {
+      ...t, late, ontime: !late, days,
+      assigneeName: person(t.assignee).name,
+      dueFull: fmt(due),
+      dateLabel: late ? (days === 1 ? '1 day late' : days + ' days late') : fmt(due),
+      titleColor: t.status === 'Done' ? '#5A6172' : '#101729',
+      strike: t.status === 'Done' ? 'line-through' : 'none',
+      sortKey: t.status === 'Done' ? 4e12 + due.getTime() : late ? -4e12 + due.getTime() : due.getTime(),
+    };
+  }
+
+  all() { return this.state.tasks.map(t => this.decorate(t)).sort((a, b) => a.sortKey - b.sortKey); }
+
+  set(patch) { this.setState(patch); }
+
+  attach = () => {
+    const id = Date.now();
+    const name = 'Sunday 16 Aug lyrics.pro';
+    this.setState(s => ({ uploads: [...s.uploads, { id, name, pct: 0 }] }));
+    const tick = setInterval(() => {
+      this.setState(s => {
+        const up = s.uploads.map(u => u.id === id ? { ...u, pct: Math.min(100, u.pct + 20) } : u);
+        const done = up.find(u => u.id === id && u.pct >= 100);
+        if (!done) return { uploads: up };
+        clearInterval(tick);
+        return {
+          uploads: up.filter(u => u.id !== id),
+          tasks: s.tasks.map(t => t.id === s.activeId
+            ? { ...t, files: [...t.files, { name, size: '412 KB', by: person(s.me).name }] } : t),
+        };
+      });
+    }, 220);
+  };
+
+  renderVals() {
+    const s = this.state;
+    const me = person(s.me);
+    const all = this.all();
+    const isList = s.screen === 'list';
+    const tab = s.tab;
+
+    let listTasks = [];
+    let listEmpty = false, emptyTitle = '', emptyBody = '';
+    if (tab === 'my') {
+      listTasks = all.filter(t => t.assignee === s.me);
+      emptyTitle = 'No tasks assigned to you yet';
+      emptyBody = 'When someone assigns you something it lands here.';
+    } else if (tab === 'all') {
+      listTasks = all.filter(t => (s.fAssignee === 'all' || t.assignee === s.fAssignee) && (s.fStatus === 'all' || t.status === s.fStatus));
+      emptyTitle = 'Nothing matches those filters';
+      emptyBody = 'Clear the assignee or status filter, or create the task yourself.';
+    }
+    listEmpty = (tab === 'my' || tab === 'all') && listTasks.length === 0;
+
+    const activeRaw = s.tasks.find(t => t.id === s.activeId) || s.tasks[0];
+    const active = this.decorate(activeRaw);
+
+    const setTab = t => () => this.set({ screen: 'list', tab: t });
+
+    return {
+      isSignin: s.screen === 'signin',
+      inApp: s.screen !== 'signin',
+      isList, isTasks: isList && tab !== 'team', isTeam: isList && tab === 'team',
+      isDetail: s.screen === 'detail', isCreate: s.screen === 'create',
+      showFilters: isList && tab === 'all',
+      meInitials: initials(me.name), meName: me.name, meIsAdmin: !!me.admin,
+
+      email: s.email, pw: s.pw, signinError: s.signinError,
+      onEmail: e => this.set({ email: e.target.value, signinError: '' }),
+      onPw: e => this.set({ pw: e.target.value, signinError: '' }),
+      doSignin: () => {
+        if (!s.email.includes('@')) return this.set({ signinError: 'That email address is missing an @. Check it and try again.' });
+        if (s.pw.length < 6) return this.set({ signinError: 'Password is at least 6 characters.' });
+        this.set({ screen: 'list', tab: 'my', signinError: '' });
+      },
+
+      viewers: [
+        { id: 'prasthuthi', label: 'Prasthuthi' },
+        { id: 'sushma', label: 'Sushma (admin)' },
+      ].map(v => ({
+        label: v.label, pick: () => this.set({ me: v.id }),
+        bg: s.me === v.id ? '#101729' : '#fff', fg: s.me === v.id ? '#fff' : '#101729',
+        bc: s.me === v.id ? '#101729' : '#C1C4C9',
+      })),
+
+      jumps: [
+        { label: 'Sign in', go: () => this.set({ screen: 'signin' }) },
+        { label: 'My tasks', go: () => this.set({ screen: 'list', tab: 'my', fAssignee: 'all', fStatus: 'all' }) },
+        { label: 'All tasks', go: () => this.set({ screen: 'list', tab: 'all', fAssignee: 'all', fStatus: 'all' }) },
+        { label: 'Task detail', go: () => this.set({ screen: 'detail', activeId: 1 }) },
+        { label: 'Create task', go: () => this.set({ screen: 'create' }) },
+        { label: 'Team', go: () => this.set({ screen: 'list', tab: 'team' }) },
+        { label: 'Empty state', go: () => this.set({ screen: 'list', tab: 'all', fAssignee: 'nikhil', fStatus: 'all' }) },
+      ],
+
+      tabs: [
+        { key: 'my', label: 'My tasks' }, { key: 'all', label: 'All tasks' }, { key: 'team', label: 'Team' },
+      ].map(t => ({
+        label: t.label, go: setTab(t.key),
+        bc: tab === t.key ? '#101729' : 'transparent',
+        fg: tab === t.key ? '#101729' : '#5A6172',
+        fw: tab === t.key ? 500 : 400,
+      })),
+
+      assigneeOptions: [{ value: 'all', label: 'Anyone' }, ...PEOPLE.map(p => ({ value: p.id, label: p.name }))],
+      statusOptions: [{ value: 'all', label: 'Any status' }, ...STATUSES.map(x => ({ value: x, label: x }))],
+      fAssignee: s.fAssignee, fStatus: s.fStatus,
+      onFAssignee: e => this.set({ fAssignee: e.target.value }),
+      onFStatus: e => this.set({ fStatus: e.target.value }),
+
+      listTasks: listTasks.map(t => ({
+        ...t, meta: t.assigneeName + ' · ' + t.status,
+        open: () => this.set({ screen: 'detail', activeId: t.id, commentDraft: '' }),
+      })),
+      listEmpty, emptyTitle, emptyBody,
+      goCreate: () => this.set({ screen: 'create', titleError: '' }),
+      goBack: () => this.set({ screen: 'list' }),
+
+      team: PEOPLE.map(p => ({
+        name: p.name, email: p.email, initials: initials(p.name), admin: !!p.admin,
+        showAddRole: !!me.admin, showNoRole: !me.admin,
+        canRemove: !!me.admin && p.id !== s.me,
+      })),
+      teamCount: PEOPLE.length + ' people',
+
+      task: {
+        ref: 'Task ' + String(active.id).padStart(3, '0'),
+        title: active.title, description: active.description,
+        assignee: active.assigneeName, assigneeInitials: initials(active.assigneeName),
+        dueFull: active.dueFull, dateLabel: active.dateLabel, late: active.late,
+        dueColor: active.late ? '#8C3B34' : '#101729',
+        fileCount: (active.files.length || 'none') + (active.files.length ? '' : ' yet'),
+        commentCount: active.comments.length || 'none yet',
+      },
+      statusPicker: STATUSES.map(x => ({
+        label: x,
+        set: () => this.setState(st => ({ tasks: st.tasks.map(t => t.id === st.activeId ? { ...t, status: x } : t) })),
+        bg: active.status === x ? '#101729' : '#fff',
+        fg: active.status === x ? '#fff' : '#101729',
+        bc: active.status === x ? '#101729' : '#C1C4C9',
+        fw: active.status === x ? 500 : 400,
+      })),
+      files: active.files.map(f => ({
+        name: f.name, isImage: !!f.image, isFile: !f.image, ext: ext(f.name),
+        meta: f.size + ' · ' + f.by,
+      })),
+      uploads: s.uploads.map(u => ({ ...u, ext: ext(u.name), pctLabel: u.pct + '%' })),
+      attach: this.attach,
+
+      comments: active.comments.map(c => ({
+        author: person(c.by).name, initials: initials(person(c.by).name), when: c.when, text: c.text,
+      })),
+      commentDraft: s.commentDraft,
+      onComment: e => this.set({ commentDraft: e.target.value }),
+      postComment: () => {
+        const text = s.commentDraft.trim();
+        if (!text) return;
+        this.setState(st => ({
+          commentDraft: '',
+          tasks: st.tasks.map(t => t.id === st.activeId
+            ? { ...t, comments: [...t.comments, { by: st.me, when: 'Mon 10 Aug · 09:26', text }] } : t),
+        }));
+      },
+
+      people: PEOPLE,
+      draftTitle: s.draft.title, draftDesc: s.draft.desc, draftAssignee: s.draft.assignee, draftDue: s.draft.due,
+      titleError: s.titleError, titleBorder: s.titleError ? '#8C3B34' : '#C1C4C9',
+      onDraftTitle: e => this.setState(st => ({ draft: { ...st.draft, title: e.target.value }, titleError: '' })),
+      onDraftDesc: e => this.setState(st => ({ draft: { ...st.draft, desc: e.target.value } })),
+      onDraftAssignee: e => this.setState(st => ({ draft: { ...st.draft, assignee: e.target.value } })),
+      onDraftDue: e => this.setState(st => ({ draft: { ...st.draft, due: e.target.value } })),
+      createTask: () => {
+        if (!s.draft.title.trim()) return this.set({ titleError: 'A task needs a title so people know what to do.' });
+        this.setState(st => ({
+          screen: 'list', tab: 'all', fAssignee: 'all', fStatus: 'all', titleError: '',
+          tasks: [...st.tasks, {
+            id: Date.now(), title: st.draft.title.trim(), assignee: st.draft.assignee,
+            due: st.draft.due, status: 'To do', description: st.draft.desc, files: [], comments: [],
+          }],
+          draft: { title: '', desc: '', assignee: 'baji', due: '2026-08-15' },
+        }));
+      },
+
+      desktopNav: [
+        { key: 'my', label: 'My tasks' }, { key: 'all', label: 'All tasks' }, { key: 'team', label: 'Team' },
+      ].map(d => ({
+        label: d.label,
+        fg: d.key === 'all' ? '#fff' : 'rgba(255,255,255,0.62)',
+        bg: d.key === 'all' ? 'rgba(255,255,255,0.12)' : 'transparent',
+      })),
+      desktopTasks: all.map(t => ({ ...t, assignee: t.assigneeName })),
+      desktopCount: all.length + ' tasks · ' + all.filter(t => t.late).length + ' overdue',
+    };
+  }
+}
+</script>
+</body>
+</html>
