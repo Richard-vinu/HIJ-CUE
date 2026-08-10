@@ -9,9 +9,26 @@ create table if not exists public.people (
   name text not null,
   email text not null unique,
   is_admin boolean not null default false,
+  is_super_admin boolean not null default false,
+  avatar_style text,
+  avatar_seed text,
   auth_user_id uuid unique references auth.users (id) on delete set null,
   created_at timestamptz not null default now()
 );
+
+-- Existing projects that already created people without these columns:
+alter table public.people
+  add column if not exists is_super_admin boolean not null default false;
+
+alter table public.people
+  add column if not exists avatar_style text;
+
+alter table public.people
+  add column if not exists avatar_seed text;
+
+-- Optional free-text role (UI also stores roles in Storage meta/people-roles.json)
+alter table public.people
+  add column if not exists role text;
 
 create table if not exists public.tasks (
   id uuid primary key default gen_random_uuid(),
@@ -120,8 +137,9 @@ drop policy if exists "attachments_insert_all" on public.attachments;
 create policy "attachments_insert_all" on public.attachments for insert with check (true);
 
 drop policy if exists "attachments_admin_delete" on public.attachments;
-create policy "attachments_admin_delete" on public.attachments
-  for delete using (public.is_admin());
+drop policy if exists "attachments_delete_all" on public.attachments;
+create policy "attachments_delete_all" on public.attachments
+  for delete using (true);
 
 insert into storage.buckets (id, name, public)
 values ('task-files', 'task-files', true)
@@ -136,49 +154,56 @@ create policy "task_files_upload" on storage.objects
   for insert with check (bucket_id = 'task-files');
 
 drop policy if exists "task_files_admin_delete" on storage.objects;
-create policy "task_files_admin_delete" on storage.objects
-  for delete using (bucket_id = 'task-files' and public.is_admin());
+drop policy if exists "task_files_delete" on storage.objects;
+create policy "task_files_delete" on storage.objects
+  for delete using (bucket_id = 'task-files');
+
+drop policy if exists "task_files_update" on storage.objects;
+create policy "task_files_update" on storage.objects
+  for update using (bucket_id = 'task-files')
+  with check (bucket_id = 'task-files');
 
 -- Fixed IDs for stable seed / admin linking
-insert into public.people (id, slug, name, email, is_admin) values
-  ('11111111-1111-1111-1111-111111111001', 'anish', 'Pastor Anish', 'anish@hij.church', true),
-  ('11111111-1111-1111-1111-111111111002', 'baji', 'Baji', 'baji@hij.church', false),
-  ('11111111-1111-1111-1111-111111111003', 'elvin', 'Elvin', 'elvin@hij.church', false),
-  ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.church', false),
-  ('11111111-1111-1111-1111-111111111005', 'jeswin', 'Jeswin', 'jeswin@hij.church', false),
-  ('11111111-1111-1111-1111-111111111006', 'prasthuthi', 'Prasthuthi', 'prasthuthi@hij.church', false),
-  ('11111111-1111-1111-1111-111111111007', 'sushma', 'Sushma', 'sushma@hij.church', true),
-  ('11111111-1111-1111-1111-111111111008', 'nikhil', 'Nikhil', 'nikhil@hij.church', false),
-  ('11111111-1111-1111-1111-111111111009', 'deepak', 'Deepak', 'deepak@hij.church', true),
-  ('11111111-1111-1111-1111-111111111010', 'asher', 'Asher', 'asher@hij.church', false)
+insert into public.people (id, slug, name, email, is_admin, is_super_admin) values
+  ('11111111-1111-1111-1111-111111111001', 'anish', 'Pastor Anish', 'pr.anish@hij.church', true, true),
+  ('11111111-1111-1111-1111-111111111002', 'baji', 'Baji', 'baji@hij.church', false, false),
+  ('11111111-1111-1111-1111-111111111003', 'elvin', 'Elvin', 'elvin@hij.church', false, false),
+  ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.church', false, false),
+  ('11111111-1111-1111-1111-111111111005', 'jeswin', 'Jeswin', 'jeswin@hij.church', false, false),
+  ('11111111-1111-1111-1111-111111111006', 'prasthuthi', 'Prasthuthi', 'prasthuthi@hij.church', false, false),
+  ('11111111-1111-1111-1111-111111111007', 'sushma', 'Sushma', 'sushma@hij.church', true, false),
+  ('11111111-1111-1111-1111-111111111008', 'nikhil', 'Nikhil', 'nikhil@hij.church', false, false),
+  ('11111111-1111-1111-1111-111111111009', 'deepak', 'Deepak', 'deepak@hij.church', true, false),
+  ('11111111-1111-1111-1111-111111111010', 'asher', 'Asher', 'asher@hij.church', false, false)
 on conflict (slug) do update set
   name = excluded.name,
   email = excluded.email,
-  is_admin = excluded.is_admin;
+  is_admin = excluded.is_admin,
+  is_super_admin = excluded.is_super_admin;
 
 insert into public.tasks (id, title, description, assignee_id, due_date, status) values
   (
     '22222222-2222-2222-2222-222222222001',
     'Song list in running order',
-    'Final running order for Sunday 16 August, including the opening and the response after the message.',
+    'Final running order for Saturday 15 August, including the opening and the response after the message.',
     '11111111-1111-1111-1111-111111111006',
-    '2026-08-07',
+    '2026-08-15',
     'To do'
   ),
   (
     '22222222-2222-2222-2222-222222222002',
     'Share whole day schedule with timings',
-    'Full Sunday timings from setup through to pack down, so media and sound know when they are needed.',
+    'Full Saturday timings from setup through to pack down, so media and sound know when they are needed.',
     '11111111-1111-1111-1111-111111111010',
-    '2026-08-08',
+    '2026-08-15',
     'To do'
   ),
   (
     '22222222-2222-2222-2222-222222222003',
     'Send lyrics for new songs',
-    'Two new songs this month. Lyrics need to be in ProPresenter before the Saturday run-through.',
+    'Two new songs this month. Lyrics need to be in ProPresenter before the run-through.',
     '11111111-1111-1111-1111-111111111006',
-    '2026-08-12',
+    '2026-08-15',
     'In progress'
   ),
   (
@@ -186,7 +211,7 @@ insert into public.tasks (id, title, description, assignee_id, due_date, status)
     'Confirm Bible version for the message',
     'So the verse slides match what is read from the platform.',
     '11111111-1111-1111-1111-111111111001',
-    '2026-08-13',
+    '2026-08-15',
     'To do'
   ),
   (
@@ -194,15 +219,15 @@ insert into public.tasks (id, title, description, assignee_id, due_date, status)
     'Mark which songs are fast and which are slow',
     'Lighting and camera need the pace of each song to plan looks and shots.',
     '11111111-1111-1111-1111-111111111006',
-    '2026-08-14',
+    '2026-08-15',
     'To do'
   ),
   (
     '22222222-2222-2222-2222-222222222006',
     'Share announcement and promo videos',
-    'Any video that plays before or after the message, uploaded here by Friday night.',
+    'Any video that plays before or after the message, uploaded here ahead of the event.',
     '11111111-1111-1111-1111-111111111001',
-    '2026-08-16',
+    '2026-08-15',
     'To do'
   ),
   (
@@ -210,7 +235,7 @@ insert into public.tasks (id, title, description, assignee_id, due_date, status)
     'Post dress code for upcoming services',
     'Dress code for the next four Sundays, shared with the whole team.',
     '11111111-1111-1111-1111-111111111007',
-    '2026-08-05',
+    '2026-08-15',
     'Done'
   )
 on conflict (id) do nothing;

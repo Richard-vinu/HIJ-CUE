@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { createClient } from "@/lib/supabase/server";
+import { getCurrentAdmin } from "@/lib/data";
 
 export const runtime = "nodejs";
 
@@ -26,6 +27,38 @@ export async function POST(request: Request) {
     }
 
     const supabase = await createClient();
+    const admin = await getCurrentAdmin();
+
+    // Team uploads must name a real person; admins may upload without one.
+    if (!admin) {
+      if (!uploadedBy) {
+        return NextResponse.json(
+          { error: "Pick who you are before attaching a file." },
+          { status: 401 }
+        );
+      }
+      const { data: person } = await supabase
+        .from("people")
+        .select("id")
+        .eq("id", uploadedBy)
+        .maybeSingle();
+      if (!person) {
+        return NextResponse.json(
+          { error: "Unknown uploader." },
+          { status: 401 }
+        );
+      }
+    }
+
+    const { data: task } = await supabase
+      .from("tasks")
+      .select("id")
+      .eq("id", taskId)
+      .maybeSingle();
+    if (!task) {
+      return NextResponse.json({ error: "Task not found." }, { status: 404 });
+    }
+
     const safeName = file.name.replace(/[^\w.\-]+/g, "_");
     const path = `${taskId}/${Date.now()}-${safeName}`;
 
@@ -46,7 +79,7 @@ export async function POST(request: Request) {
       size_bytes: file.size,
       storage_path: path,
       mime_type: file.type || null,
-      uploaded_by: uploadedBy,
+      uploaded_by: uploadedBy || admin?.id || null,
     });
 
     if (error) {

@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "seed:admins": "node scripts/seed-admins.mjs"
+    "seed:admins": "node scripts/seed-admins.mjs",
+    "ensure:avatars": "node scripts/ensure-avatars.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "test:e2e": "node scripts/e2e-concurrent.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
@@ -35,6 +38,7 @@
     "@types/ws": "^8.18.1",
     "eslint": "^9",
     "eslint-config-next": "16.3.0",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

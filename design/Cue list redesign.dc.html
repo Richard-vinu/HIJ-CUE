@@ -9,6 +9,137 @@
 <x-dc>
 <helmet><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"><style>body{margin:0;background:#EFF0F2;font-family:Archivo,system-ui,sans-serif}a{color:#8C3B34}a:hover{color:#101729}</style></helmet>
 
+<section style="padding:40px 44px 36px;border-bottom:1px solid #C1C4C9" id="t3">
+<div style="display:flex;align-items:baseline;gap:10px;margin:0 0 6px"><a href="#t3" style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;padding:3px 7px;background:#101729;color:#fff;border-radius:4px;text-decoration:none">3</a><span style="font-size:13px;font-weight:500;color:#101729">Desktop, glass — not the phone layout stretched</span></div>
+<p style="margin:0 0 26px;font-size:13px;color:#5A6172;max-width:82ch">What you screenshotted is the mobile column at 1400px: 100px rows, one task per line, and half the window empty. Desktop needs different anatomy — a fixed rail on the left for navigation and people, real columns for assignee, status and due, and rows around 52px so ten tasks fit above the fold. Same glass language as <a href="#2a" style="color:#8C3B34">2a</a>.</p>
+
+<div style="display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start">
+
+<div id="3a" style="display:flex;flex-direction:column;gap:9px;flex:none">
+<div style="display:flex;align-items:baseline;gap:8px;font-size:11px;color:#5A6172"><a href="#3a" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;padding:3px 7px;background:rgba(0,0,0,0.08);color:#101729;border-radius:5px;text-decoration:none">3a</a>Rail plus columns</div>
+<div style="width:1280px;height:720px;position:relative;overflow:hidden;border-radius:14px;background:#F1F2F4;font-family:-apple-system,system-ui,sans-serif;box-shadow:0 20px 50px rgba(16,23,41,0.18)">
+  <div style="position:absolute;width:520px;height:520px;left:120px;top:-120px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.95),rgba(255,255,255,0) 70%);filter:blur(40px)"></div>
+  <div style="position:absolute;width:460px;height:460px;right:-100px;bottom:-140px;border-radius:50%;background:radial-gradient(circle,rgba(90,97,114,0.3),rgba(90,97,114,0) 70%);filter:blur(50px)"></div>
+  <div style="position:absolute;inset:0;display:flex">
+
+    <div style="width:236px;flex:none;padding:18px 14px;display:flex;flex-direction:column;gap:22px;background:linear-gradient(178deg,rgba(255,255,255,0.7),rgba(255,255,255,0.4));backdrop-filter:blur(40px) saturate(1.8);-webkit-backdrop-filter:blur(40px) saturate(1.8);border-right:0.5px solid rgba(16,23,41,0.1)">
+      <div style="display:flex;align-items:center;gap:10px;padding:0 6px"><img src="logo-seal.png" alt="" style="width:28px;height:28px;border-radius:50%" /><div style="font-size:17px;font-weight:600;letter-spacing:-0.02em;color:#101729">HIJ Cue</div></div>
+      <div style="display:flex;flex-direction:column;gap:2px">
+        <div style="display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border-radius:9px;font-size:14px;font-weight:600;color:#101729;background:rgba(255,255,255,0.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.9),0 1px 2px rgba(16,23,41,0.1)"><span>My tasks</span><span style="font-size:12px;color:#8C3B34;font-variant-numeric:tabular-nums">1 late</span></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border-radius:9px;font-size:14px;color:#5A6172"><span>All tasks</span><span style="font-size:12px;font-variant-numeric:tabular-nums">7</span></div>
+        <div style="display:flex;align-items:center;height:36px;padding:0 10px;border-radius:9px;font-size:14px;color:#5A6172">Team</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.04em;color:#5A6172;padding:0 10px;margin-bottom:8px">PEOPLE</div>
+        <div style="display:flex;flex-direction:column;gap:1px">
+          <div style="display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:8px;font-size:13.5px;color:#101729"><span style="width:20px;height:20px;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:9.5px;font-weight:600">PR</span>Prasthuthi<span style="flex:1"></span><span style="font-size:11.5px;color:#8C3B34;font-variant-numeric:tabular-nums">1</span></div>
+          <div style="display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:8px;font-size:13.5px;color:#101729"><span style="width:20px;height:20px;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:9.5px;font-weight:600">PA</span>Pastor Anish<span style="flex:1"></span><span style="font-size:11.5px;color:#5A6172;font-variant-numeric:tabular-nums">2</span></div>
+          <div style="display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:8px;font-size:13.5px;color:#101729"><span style="width:20px;height:20px;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:9.5px;font-weight:600">AS</span>Asher<span style="flex:1"></span><span style="font-size:11.5px;color:#8C3B34;font-variant-numeric:tabular-nums">1</span></div>
+          <div style="display:flex;align-items:center;gap:9px;height:32px;padding:0 10px;border-radius:8px;font-size:13.5px;color:#101729"><span style="width:20px;height:20px;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:9.5px;font-weight:600">SU</span>Sushma<span style="flex:1"></span><span style="font-size:11.5px;color:#5A6172;font-variant-numeric:tabular-nums">1</span></div>
+        </div>
+      </div>
+      <div style="flex:1"></div>
+      <div style="display:flex;align-items:center;gap:9px;padding:0 10px 4px;font-size:13.5px;color:#101729"><span style="width:24px;height:24px;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:10px;font-weight:600">PR</span>Prasthuthi</div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;min-width:0">
+      <div style="height:60px;flex:none;display:flex;align-items:center;gap:12px;padding:0 22px;background:linear-gradient(178deg,rgba(255,255,255,0.66),rgba(255,255,255,0.38));backdrop-filter:blur(40px) saturate(1.8);-webkit-backdrop-filter:blur(40px) saturate(1.8);border-bottom:0.5px solid rgba(16,23,41,0.1)">
+        <div style="font-size:18px;font-weight:600;letter-spacing:-0.02em;color:#101729">All tasks</div>
+        <div style="font-size:13px;color:#5A6172">7 tasks · 2 overdue</div>
+        <div style="flex:1"></div>
+        <div style="height:32px;display:flex;align-items:center;gap:6px;padding:0 11px;border-radius:9px;font-size:13px;color:#101729;background:rgba(255,255,255,0.75);box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.9),0 1px 2px rgba(16,23,41,0.08)">Anyone<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg></div>
+        <div style="height:32px;display:flex;align-items:center;gap:6px;padding:0 11px;border-radius:9px;font-size:13px;color:#101729;background:rgba(255,255,255,0.75);box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.9),0 1px 2px rgba(16,23,41,0.08)">Any status<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6" /></svg></div>
+        <div style="height:32px;display:flex;align-items:center;gap:7px;padding:0 14px;border-radius:9px;background:#101729;color:#fff;font-size:13.5px;font-weight:600;box-shadow:0 4px 12px rgba(16,23,41,0.25)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14" /></svg>Create task</div>
+      </div>
+
+      <div style="flex:1;padding:16px 22px;overflow:hidden">
+        <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;padding:0 16px 7px;font-size:11px;font-weight:600;letter-spacing:0.04em;color:#5A6172"><div>TASK</div><div>ASSIGNEE</div><div>STATUS</div><div style="text-align:right">DUE</div></div>
+        <div style="border-radius:16px;overflow:hidden;margin-bottom:14px;background:linear-gradient(178deg,rgba(140,59,52,0.26),rgba(140,59,52,0.12) 50%,rgba(140,59,52,0.2));backdrop-filter:blur(44px) saturate(1.9);-webkit-backdrop-filter:blur(44px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6),inset 0 0 0 0.5px rgba(140,59,52,0.45),0 10px 30px rgba(140,59,52,0.14)">
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px;border-bottom:0.5px solid rgba(140,59,52,0.25)"><div style="font-size:14.5px;font-weight:600;color:#101729">Song list in running order</div><div style="font-size:13.5px;color:#8C3B34">Prasthuthi</div><div style="font-size:13.5px;color:#8C3B34">To do</div><div style="font-size:13.5px;font-weight:600;color:#8C3B34;text-align:right;font-variant-numeric:tabular-nums">3 days late</div></div>
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px"><div style="font-size:14.5px;font-weight:600;color:#101729">Share whole day schedule with timings</div><div style="font-size:13.5px;color:#8C3B34">Asher</div><div style="font-size:13.5px;color:#8C3B34">To do</div><div style="font-size:13.5px;font-weight:600;color:#8C3B34;text-align:right;font-variant-numeric:tabular-nums">2 days late</div></div>
+        </div>
+        <div style="border-radius:16px;overflow:hidden;background:linear-gradient(178deg,rgba(255,255,255,0.72),rgba(255,255,255,0.42) 46%,rgba(255,255,255,0.58));backdrop-filter:blur(44px) saturate(1.9);-webkit-backdrop-filter:blur(44px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),inset 0 0 0 0.5px rgba(255,255,255,0.7),0 10px 30px rgba(16,23,41,0.1)">
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="font-size:14.5px;font-weight:600;color:#101729">Send lyrics for new songs</div><div style="font-size:13.5px;color:#5A6172">Prasthuthi</div><div style="font-size:13.5px;color:#5A6172">In progress</div><div style="font-size:13.5px;color:#5A6172;text-align:right;font-variant-numeric:tabular-nums">Wed 12 Aug</div></div>
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="font-size:14.5px;font-weight:600;color:#101729">Confirm Bible version for the message</div><div style="font-size:13.5px;color:#5A6172">Pastor Anish</div><div style="font-size:13.5px;color:#5A6172">To do</div><div style="font-size:13.5px;color:#5A6172;text-align:right;font-variant-numeric:tabular-nums">Thu 13 Aug</div></div>
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="font-size:14.5px;font-weight:600;color:#101729">Mark which songs are fast and which are slow</div><div style="font-size:13.5px;color:#5A6172">Prasthuthi</div><div style="font-size:13.5px;color:#5A6172">To do</div><div style="font-size:13.5px;color:#5A6172;text-align:right;font-variant-numeric:tabular-nums">Fri 14 Aug</div></div>
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="font-size:14.5px;font-weight:600;color:#101729">Share announcement and promo videos</div><div style="font-size:13.5px;color:#5A6172">Pastor Anish</div><div style="font-size:13.5px;color:#5A6172">To do</div><div style="font-size:13.5px;color:#5A6172;text-align:right;font-variant-numeric:tabular-nums">Sun 16 Aug</div></div>
+          <div style="display:grid;grid-template-columns:1fr 150px 110px 110px;align-items:center;height:52px;padding:0 16px"><div style="font-size:14.5px;font-weight:600;color:#5A6172;text-decoration:line-through">Post dress code for upcoming services</div><div style="font-size:13.5px;color:#5A6172">Sushma</div><div style="font-size:13.5px;color:#5A6172">Done</div><div style="font-size:13.5px;color:#5A6172;text-align:right;font-variant-numeric:tabular-nums">Wed 5 Aug</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p style="margin:0;width:1280px;font-size:12.5px;line-height:1.5;color:#5A6172">Rows at 52px, four real columns, and the rail carries navigation plus per-person counts, so the width earns its keep. All seven tasks visible without scrolling, with room for a dozen more.</p>
+</div>
+
+<div id="3b" style="display:flex;flex-direction:column;gap:9px;flex:none">
+<div style="display:flex;align-items:baseline;gap:8px;font-size:11px;color:#5A6172"><a href="#3b" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;padding:3px 7px;background:rgba(0,0,0,0.08);color:#101729;border-radius:5px;text-decoration:none">3b</a>List plus detail pane — no page change to read a task</div>
+<div style="width:1280px;height:720px;position:relative;overflow:hidden;border-radius:14px;background:#F1F2F4;font-family:-apple-system,system-ui,sans-serif;box-shadow:0 20px 50px rgba(16,23,41,0.18)">
+  <div style="position:absolute;width:520px;height:520px;left:60px;top:-140px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.95),rgba(255,255,255,0) 70%);filter:blur(40px)"></div>
+  <div style="position:absolute;width:460px;height:460px;right:-120px;bottom:-160px;border-radius:50%;background:radial-gradient(circle,rgba(90,97,114,0.3),rgba(90,97,114,0) 70%);filter:blur(50px)"></div>
+  <div style="position:absolute;inset:0;display:flex;flex-direction:column">
+    <div style="height:56px;flex:none;display:flex;align-items:center;gap:14px;padding:0 20px;background:linear-gradient(178deg,rgba(255,255,255,0.7),rgba(255,255,255,0.4));backdrop-filter:blur(40px) saturate(1.8);-webkit-backdrop-filter:blur(40px) saturate(1.8);border-bottom:0.5px solid rgba(16,23,41,0.1)">
+      <img src="logo-seal.png" alt="" style="width:26px;height:26px;border-radius:50%" /><div style="font-size:16.5px;font-weight:600;letter-spacing:-0.02em;color:#101729">HIJ Cue</div>
+      <div style="display:flex;gap:2px;margin-left:14px"><div style="height:30px;display:grid;place-items:center;padding:0 12px;border-radius:8px;font-size:13.5px;color:#5A6172">My tasks</div><div style="height:30px;display:grid;place-items:center;padding:0 12px;border-radius:8px;font-size:13.5px;font-weight:600;color:#101729;background:rgba(255,255,255,0.9);box-shadow:0 1px 2px rgba(16,23,41,0.1)">All tasks</div><div style="height:30px;display:grid;place-items:center;padding:0 12px;border-radius:8px;font-size:13.5px;color:#5A6172">Team</div></div>
+      <div style="flex:1"></div>
+      <div style="height:30px;display:flex;align-items:center;gap:7px;padding:0 13px;border-radius:8px;background:#101729;color:#fff;font-size:13px;font-weight:600"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14" /></svg>Create task</div>
+      <div style="width:28px;height:28px;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:11px;font-weight:600;color:#101729">PR</div>
+    </div>
+    <div style="flex:1;display:flex;min-height:0">
+      <div style="width:520px;flex:none;padding:14px 16px;overflow:hidden;border-right:0.5px solid rgba(16,23,41,0.1)">
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.04em;color:#8C3B34;margin:0 4px 7px">OVERDUE · 2</div>
+        <div style="border-radius:14px;overflow:hidden;margin-bottom:14px;background:linear-gradient(178deg,rgba(140,59,52,0.26),rgba(140,59,52,0.12) 50%,rgba(140,59,52,0.2));backdrop-filter:blur(44px) saturate(1.9);-webkit-backdrop-filter:blur(44px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.6),inset 0 0 0 0.5px rgba(140,59,52,0.45)">
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px;border-bottom:0.5px solid rgba(140,59,52,0.25);box-shadow:inset 3px 0 0 #8C3B34"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#101729">Song list in running order</div><div style="font-size:12.5px;color:#8C3B34">Prasthuthi</div></div><div style="font-size:12.5px;font-weight:600;color:#8C3B34;font-variant-numeric:tabular-nums">3 days late</div></div>
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px;"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#101729">Share whole day schedule with timings</div><div style="font-size:12.5px;color:#8C3B34">Asher</div></div><div style="font-size:12.5px;font-weight:600;color:#8C3B34;font-variant-numeric:tabular-nums">2 days late</div></div>
+          
+        </div>
+        <div style="font-size:11px;font-weight:600;letter-spacing:0.04em;color:#5A6172;margin:0 4px 7px">THIS WEEK · 5</div>
+        <div style="border-radius:14px;overflow:hidden;background:linear-gradient(178deg,rgba(255,255,255,0.72),rgba(255,255,255,0.42) 46%,rgba(255,255,255,0.58));backdrop-filter:blur(44px) saturate(1.9);-webkit-backdrop-filter:blur(44px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),inset 0 0 0 0.5px rgba(255,255,255,0.7)">
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#101729">Send lyrics for new songs</div><div style="font-size:12.5px;color:#5A6172">Prasthuthi · In progress</div></div><div style="font-size:12.5px;color:#5A6172;font-variant-numeric:tabular-nums">Wed 12</div></div>
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#101729">Confirm Bible version for the message</div><div style="font-size:12.5px;color:#5A6172">Pastor Anish · To do</div></div><div style="font-size:12.5px;color:#5A6172;font-variant-numeric:tabular-nums">Thu 13</div></div>
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#101729">Mark which songs are fast and which are slow</div><div style="font-size:12.5px;color:#5A6172">Prasthuthi · To do</div></div><div style="font-size:12.5px;color:#5A6172;font-variant-numeric:tabular-nums">Fri 14</div></div>
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#101729">Share announcement and promo videos</div><div style="font-size:12.5px;color:#5A6172">Pastor Anish · To do</div></div><div style="font-size:12.5px;color:#5A6172;font-variant-numeric:tabular-nums">Sun 16</div></div>
+          <div style="display:flex;align-items:center;gap:12px;height:50px;padding:0 14px;border-top:0.5px solid rgba(16,23,41,0.1)"><div style="flex:1;min-width:0"><div style="font-size:14px;font-weight:600;color:#5A6172;text-decoration:line-through">Post dress code for upcoming services</div><div style="font-size:12.5px;color:#5A6172">Sushma · Done</div></div><div style="font-size:12.5px;color:#5A6172;font-variant-numeric:tabular-nums">Wed 5</div></div>
+        </div>
+      </div>
+
+      <div style="flex:1;min-width:0;padding:20px 24px;overflow:hidden">
+        <div style="border-radius:18px;padding:22px;background:linear-gradient(178deg,rgba(255,255,255,0.78),rgba(255,255,255,0.46) 46%,rgba(255,255,255,0.6));backdrop-filter:blur(46px) saturate(1.9);-webkit-backdrop-filter:blur(46px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),inset 0 0 0 0.5px rgba(255,255,255,0.7),0 12px 34px rgba(16,23,41,0.12)">
+          <div style="font-size:11.5px;font-weight:600;letter-spacing:0.04em;color:#8C3B34">3 DAYS LATE · DUE FRI 7 AUG</div>
+          <h3 style="font-size:22px;font-weight:600;letter-spacing:-0.02em;margin:8px 0 0;color:#101729">Song list in running order</h3>
+          <div style="display:flex;gap:8px;margin:16px 0 0">
+            <div style="height:32px;display:grid;place-items:center;padding:0 14px;border-radius:9px;background:#101729;color:#fff;font-size:13px;font-weight:600">To do</div>
+            <div style="height:32px;display:grid;place-items:center;padding:0 14px;border-radius:9px;background:rgba(255,255,255,0.7);color:#101729;font-size:13px;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.9)">In progress</div>
+            <div style="height:32px;display:grid;place-items:center;padding:0 14px;border-radius:9px;background:rgba(255,255,255,0.7);color:#101729;font-size:13px;box-shadow:inset 0 0 0 0.5px rgba(255,255,255,0.9)">Done</div>
+          </div>
+          <p style="font-size:14px;line-height:1.55;color:#101729;margin:18px 0 0;text-wrap:pretty">Final running order for Sunday 16 August, including the opening and the response after the message.</p>
+          <div style="display:flex;gap:26px;margin:18px 0 0;padding-top:16px;border-top:0.5px solid rgba(16,23,41,0.12)">
+            <div><div style="font-size:11.5px;color:#5A6172">Assignee</div><div style="font-size:14px;font-weight:600;color:#101729;margin-top:3px">Prasthuthi</div></div>
+            <div><div style="font-size:11.5px;color:#5A6172">Created by</div><div style="font-size:14px;font-weight:600;color:#101729;margin-top:3px">Baji</div></div>
+            <div><div style="font-size:11.5px;color:#5A6172">Files</div><div style="font-size:14px;font-weight:600;color:#101729;margin-top:3px">2</div></div>
+          </div>
+        </div>
+        <div style="margin-top:14px;border-radius:18px;padding:16px 18px;background:linear-gradient(178deg,rgba(255,255,255,0.68),rgba(255,255,255,0.4));backdrop-filter:blur(46px) saturate(1.9);-webkit-backdrop-filter:blur(46px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.9),inset 0 0 0 0.5px rgba(255,255,255,0.65)">
+          <div style="font-size:11.5px;font-weight:600;letter-spacing:0.04em;color:#5A6172;margin-bottom:10px">FILES</div>
+          <div style="display:flex;align-items:center;gap:12px;padding-bottom:10px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="width:34px;height:34px;border-radius:8px;background:rgba(16,23,41,0.07);display:grid;place-items:center;font-size:9.5px;font-weight:600;color:#5A6172">PDF</div><div style="flex:1"><div style="font-size:13.5px;font-weight:600;color:#101729">Song list - 9 Aug.pdf</div><div style="font-size:12px;color:#5A6172;font-variant-numeric:tabular-nums">84 KB · Prasthuthi</div></div></div>
+          <div style="display:flex;align-items:center;gap:12px;padding-top:10px"><div style="width:34px;height:34px;border-radius:8px;background:rgba(16,23,41,0.18);display:grid;place-items:center;font-size:9.5px;font-weight:600;color:#101729">IMG</div><div style="flex:1"><div style="font-size:13.5px;font-weight:600;color:#101729">Running order photo.jpg</div><div style="font-size:12px;color:#5A6172;font-variant-numeric:tabular-nums">1.2 MB · Baji</div></div></div>
+        </div>
+        <div style="margin-top:14px;border-radius:18px;padding:16px 18px;background:linear-gradient(178deg,rgba(255,255,255,0.68),rgba(255,255,255,0.4));backdrop-filter:blur(46px) saturate(1.9);-webkit-backdrop-filter:blur(46px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.9),inset 0 0 0 0.5px rgba(255,255,255,0.65)">
+          <div style="font-size:11.5px;font-weight:600;letter-spacing:0.04em;color:#5A6172;margin-bottom:10px">COMMENTS · 2</div>
+          <div style="display:flex;gap:10px"><div style="width:24px;height:24px;flex:none;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:9.5px;font-weight:600;color:#5A6172">BA</div><div><div style="font-size:13px;font-weight:600;color:#101729">Baji <span style="font-weight:400;color:#5A6172;font-variant-numeric:tabular-nums">Fri 7 Aug · 21:14</span></div><div style="font-size:13.5px;color:#101729;margin-top:2px">Anything for me to load yet? Rehearsal is Saturday morning.</div></div></div>
+          <div style="display:flex;gap:10px;margin-top:12px;padding-top:12px;border-top:0.5px solid rgba(16,23,41,0.1)"><div style="width:24px;height:24px;flex:none;border-radius:50%;background:rgba(16,23,41,0.08);display:grid;place-items:center;font-size:9.5px;font-weight:600;color:#5A6172">PR</div><div><div style="font-size:13px;font-weight:600;color:#101729">Prasthuthi <span style="font-weight:400;color:#5A6172;font-variant-numeric:tabular-nums">Sat 8 Aug · 08:02</span></div><div style="font-size:13.5px;color:#101729;margin-top:2px">Order is set, I am checking two keys with the team and then it goes up here.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p style="margin:0;width:1280px;font-size:12.5px;line-height:1.5;color:#5A6172">Reading a task never leaves the list, which matters on a laptop on Saturday night. Costs you list density: the narrower column fits fewer rows before scrolling than <a href="#3a" style="color:#8C3B34">3a</a>.</p>
+</div>
+
+</div>
+<p style="margin:26px 0 0;font-size:12px;color:#5A6172">Try next: "go with <a href="#3a" style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2px 6px;background:rgba(0,0,0,0.08);border-radius:4px;text-decoration:none;color:#101729">3a</a> and rebuild the prototype in glass" · "<a href="#3b" style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2px 6px;background:rgba(0,0,0,0.08);border-radius:4px;text-decoration:none;color:#101729">3b</a> with the rail from <a href="#3a" style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2px 6px;background:rgba(0,0,0,0.08);border-radius:4px;text-decoration:none;color:#101729">3a</a>" · "show the dark version of <a href="#3a" style="font-family:'IBM Plex Mono',monospace;font-size:11px;padding:2px 6px;background:rgba(0,0,0,0.08);border-radius:4px;text-decoration:none;color:#101729">3a</a>"</p>
+</section>
+
 <section style="padding:40px 44px 36px;border-bottom:1px solid #C1C4C9" id="t2">
 <div style="display:flex;align-items:baseline;gap:10px;margin:0 0 6px"><a href="#t2" style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;padding:3px 7px;background:#101729;color:#fff;border-radius:4px;text-decoration:none">2</a><span style="font-size:13px;font-weight:500;color:#101729">Glass — Apple-style translucency</span></div>
 <p style="margin:0 0 26px;font-size:13px;color:#5A6172;max-width:78ch">System font, inset grouped rows, 22px corners, blurred bars top and bottom, with a specular highlight along the top edge of every panel. Your brief rules glass out, so treat these as the override you asked for rather than a correction to <a href="#t1" style="color:#8C3B34">turn 1</a>.</p>
@@ -17,7 +148,7 @@
 
 <div id="2a" style="display:flex;flex-direction:column;gap:9px;flex:none">
 <div style="display:flex;align-items:baseline;gap:8px;font-size:11px;color:#5A6172"><a href="#2a" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;padding:3px 7px;background:rgba(0,0,0,0.08);color:#101729;border-radius:5px;text-decoration:none">2a</a>Light glass</div>
-<div style="width:402px;height:800px;position:relative;overflow:hidden;border-radius:34px;background:#F1F2F4;font-family:-apple-system,system-ui,sans-serif;box-shadow:0 20px 50px rgba(16,23,41,0.18)">
+<div style="width:402px;height:880px;position:relative;overflow:hidden;border-radius:34px;background:#F1F2F4;font-family:-apple-system,system-ui,sans-serif;box-shadow:0 20px 50px rgba(16,23,41,0.18)">
   <div style="position:absolute;width:520px;height:520px;left:-140px;top:40px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.95),rgba(255,255,255,0) 70%);filter:blur(40px)"></div>
   <div style="position:absolute;width:380px;height:380px;right:-120px;bottom:-40px;border-radius:50%;background:radial-gradient(circle,rgba(90,97,114,0.35),rgba(90,97,114,0) 70%);filter:blur(50px)"></div>
   <div style="position:absolute;inset:0;display:flex;flex-direction:column">
@@ -39,16 +170,21 @@
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#101729;letter-spacing:-0.01em">Confirm Bible version</div><div style="font-size:13px;color:#5A6172;margin-top:2px">Pastor Anish · To do</div></div><div style="font-size:13px;color:#5A6172;font-variant-numeric:tabular-nums">Thu 13</div></div>
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#101729;letter-spacing:-0.01em">Mark fast and slow songs</div><div style="font-size:13px;color:#5A6172;margin-top:2px">Prasthuthi · To do</div></div><div style="font-size:13px;color:#5A6172;font-variant-numeric:tabular-nums">Fri 14</div></div>
       </div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.02em;color:#5A6172;margin:20px 6px 7px">LATER</div>
+      <div style="border-radius:22px;overflow:hidden;background:linear-gradient(178deg,rgba(255,255,255,0.72),rgba(255,255,255,0.42) 46%,rgba(255,255,255,0.58));backdrop-filter:blur(44px) saturate(1.9);-webkit-backdrop-filter:blur(44px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.95),inset 0 0 0 0.5px rgba(255,255,255,0.7),inset 0 -1px 0 rgba(16,23,41,0.06),0 10px 30px rgba(16,23,41,0.12)">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:0.5px solid rgba(16,23,41,0.1)"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#101729;letter-spacing:-0.01em">Share announcement and promo videos</div><div style="font-size:13px;color:#5A6172;margin-top:2px">Pastor Anish · To do</div></div><div style="font-size:13px;color:#5A6172;font-variant-numeric:tabular-nums">Sun 16</div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#5A6172;letter-spacing:-0.01em;text-decoration:line-through">Post dress code for upcoming services</div><div style="font-size:13px;color:#5A6172;margin-top:2px">Sushma · Done</div></div><div style="font-size:13px;color:#5A6172;font-variant-numeric:tabular-nums">Wed 5</div></div>
+      </div>
     </div>
     <div style="padding:12px 16px 26px;background:rgba(255,255,255,0.6);backdrop-filter:blur(40px) saturate(1.9);-webkit-backdrop-filter:blur(40px) saturate(1.9);border-top:0.5px solid rgba(16,23,41,0.1)"><div style="height:48px;border-radius:14px;background:#101729;color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;letter-spacing:-0.01em;box-shadow:0 6px 16px rgba(16,23,41,0.28)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" /></svg>Create task</div></div>
   </div>
 </div>
-<p style="margin:0;width:402px;font-size:12.5px;line-height:1.5;color:#5A6172">iOS grouped-list structure: inset panels on a blurred field, translucent bars top and bottom, overdue as a tinted glass panel rather than a solid fill.</p>
+<p style="margin:0;width:402px;font-size:12.5px;line-height:1.5;color:#5A6172">iOS grouped-list structure on a neutral cool-grey field: inset panels with a highlight on the top edge, translucent bars top and bottom, overdue as a tinted glass panel rather than a solid fill.</p>
 </div>
 
 <div id="2b" style="display:flex;flex-direction:column;gap:9px;flex:none">
-<div style="display:flex;align-items:baseline;gap:8px;font-size:11px;color:#5A6172"><a href="#2b" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;padding:3px 7px;background:rgba(0,0,0,0.08);color:#101729;border-radius:5px;text-decoration:none">2b</a>Dark glass — closest to the seal</div>
-<div style="width:402px;height:800px;position:relative;overflow:hidden;border-radius:34px;background:#16181C;font-family:-apple-system,system-ui,sans-serif;box-shadow:0 20px 50px rgba(22,24,28,0.35)">
+<div style="display:flex;align-items:baseline;gap:8px;font-size:11px;color:#5A6172"><a href="#2b" style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:500;padding:3px 7px;background:rgba(0,0,0,0.08);color:#101729;border-radius:5px;text-decoration:none">2b</a>Dark glass</div>
+<div style="width:402px;height:880px;position:relative;overflow:hidden;border-radius:34px;background:#16181C;font-family:-apple-system,system-ui,sans-serif;box-shadow:0 20px 50px rgba(22,24,28,0.35)">
   <div style="position:absolute;width:560px;height:560px;left:-150px;top:30px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.30),rgba(255,255,255,0) 70%);filter:blur(50px)"></div>
   <div style="position:absolute;width:360px;height:360px;right:-120px;bottom:-40px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.16),rgba(255,255,255,0) 70%);filter:blur(50px)"></div>
   <div style="position:absolute;inset:0;display:flex;flex-direction:column">
@@ -70,11 +206,16 @@
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:0.5px solid rgba(255,255,255,0.16)"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#fff;letter-spacing:-0.01em">Confirm Bible version</div><div style="font-size:13px;color:rgba(255,255,255,0.68);margin-top:2px">Pastor Anish · To do</div></div><div style="font-size:13px;color:rgba(255,255,255,0.68);font-variant-numeric:tabular-nums">Thu 13</div></div>
         <div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#fff;letter-spacing:-0.01em">Mark fast and slow songs</div><div style="font-size:13px;color:rgba(255,255,255,0.68);margin-top:2px">Prasthuthi · To do</div></div><div style="font-size:13px;color:rgba(255,255,255,0.68);font-variant-numeric:tabular-nums">Fri 14</div></div>
       </div>
+      <div style="font-size:12px;font-weight:600;letter-spacing:0.02em;color:rgba(255,255,255,0.6);margin:20px 6px 7px">LATER</div>
+      <div style="border-radius:22px;overflow:hidden;background:linear-gradient(178deg,rgba(255,255,255,0.20),rgba(255,255,255,0.08) 48%,rgba(255,255,255,0.14));backdrop-filter:blur(46px) saturate(1.9);-webkit-backdrop-filter:blur(46px) saturate(1.9);box-shadow:inset 0 1px 0 rgba(255,255,255,0.4),inset 0 0 0 0.5px rgba(255,255,255,0.22),0 12px 34px rgba(0,0,0,0.35)">
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px;border-bottom:0.5px solid rgba(255,255,255,0.16)"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:#fff;letter-spacing:-0.01em">Share announcement and promo videos</div><div style="font-size:13px;color:rgba(255,255,255,0.68);margin-top:2px">Pastor Anish · To do</div></div><div style="font-size:13px;color:rgba(255,255,255,0.68);font-variant-numeric:tabular-nums">Sun 16</div></div>
+        <div style="display:flex;align-items:center;gap:12px;padding:14px 16px"><div style="flex:1"><div style="font-size:15.5px;font-weight:600;color:rgba(255,255,255,0.6);letter-spacing:-0.01em;text-decoration:line-through">Post dress code for upcoming services</div><div style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:2px">Sushma · Done</div></div><div style="font-size:13px;color:rgba(255,255,255,0.6);font-variant-numeric:tabular-nums">Wed 5</div></div>
+      </div>
     </div>
     <div style="padding:12px 16px 26px;background:rgba(22,24,28,0.6);backdrop-filter:blur(40px) saturate(1.7);-webkit-backdrop-filter:blur(40px) saturate(1.7);border-top:0.5px solid rgba(255,255,255,0.14)"><div style="height:48px;border-radius:14px;background:rgba(255,255,255,0.95);color:#101729;display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;font-weight:600;letter-spacing:-0.01em"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14" /></svg>Create task</div></div>
   </div>
 </div>
-<p style="margin:0;width:402px;font-size:12.5px;line-height:1.5;color:#5A6172">Sits directly on the navy of the seal. Overdue reads as a lit panel rather than a colour patch. Costs you outdoor legibility on a phone in daylight.</p>
+<p style="margin:0;width:402px;font-size:12.5px;line-height:1.5;color:#5A6172">Panels lift off a neutral charcoal field, each with a specular highlight along its top edge. Overdue reads as a lit panel rather than a colour patch. Costs you outdoor legibility on a phone in daylight.</p>
 </div>
 
 </div>

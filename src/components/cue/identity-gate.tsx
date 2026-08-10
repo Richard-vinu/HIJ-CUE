@@ -1,5 +1,8 @@
 "use client";
 
+import { HijLogo } from "@/components/brand/hij-logo";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { PersonAvatar } from "@/components/person-avatar";
 import { useMe } from "@/components/cue/me-provider";
 import {
   Select,
@@ -9,75 +12,51 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { initials } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/types";
-
-function BrandPanel() {
-  return (
-    <div className="relative flex min-h-[42vh] flex-col justify-between overflow-hidden bg-ink px-8 py-10 text-white md:min-h-dvh md:px-14 md:py-14 lg:px-16">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-[0.14]"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 18% 22%, #ffffff 0.6px, transparent 0.7px), radial-gradient(circle at 78% 68%, #ffffff 0.6px, transparent 0.7px)",
-          backgroundSize: "28px 28px",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute -right-24 -bottom-28 size-[420px] rounded-full bg-white/[0.06] blur-2xl"
-      />
-
-      <div className="relative">
-        <div className="flex items-center gap-3">
-          <div className="grid size-11 place-items-center rounded-full border border-white/30 font-mono text-[11px] tracking-wide">
-            HIJ
-          </div>
-          <div className="font-mono text-[11px] tracking-[0.18em] text-white/55 uppercase">
-            Hope in Jesus
-          </div>
-        </div>
-      </div>
-
-      <div className="relative max-w-lg py-10 md:py-0">
-        <p className="font-mono text-[12px] tracking-[0.16em] text-white/50 uppercase">
-          Media · Worship · Production
-        </p>
-        <h1 className="mt-4 text-[42px] leading-[1.05] font-medium tracking-[-0.03em] md:text-[56px] lg:text-[64px]">
-          Cue
-        </h1>
-        <p className="mt-4 max-w-[34ch] text-[16px] leading-relaxed text-white/70 md:text-[17px]">
-          Know what needs doing, who owns it, and when it is due — before Sunday
-          arrives.
-        </p>
-      </div>
-
-      <p className="relative font-mono text-[11px] text-white/35">
-        Internal team · HIJ Apostolic Church
-      </p>
-    </div>
-  );
-}
 
 function PersonPicker({ people }: { people: Person[] }) {
   const { setMeId } = useMe();
 
   return (
-    <div className="flex min-h-[58vh] flex-col justify-center bg-page px-6 py-10 md:min-h-dvh md:px-12 lg:px-16">
-      <div className="mx-auto w-full max-w-md md:mx-0 md:max-w-lg">
-        <h2 className="text-[28px] leading-tight font-medium tracking-[-0.02em] text-ink md:text-[34px]">
+    <div className="glass-ambient relative flex min-h-dvh items-center justify-center overflow-hidden px-4 py-10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -top-10 -left-36 size-[520px] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.95),rgba(255,255,255,0)_70%)] blur-[40px] dark:opacity-20"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-28 -bottom-10 size-[380px] rounded-full bg-[radial-gradient(circle,rgba(90,97,114,0.35),rgba(90,97,114,0)_70%)] blur-[50px] dark:opacity-40"
+      />
+
+      <div className="absolute top-4 right-4 z-20 md:top-6 md:right-6">
+        <ThemeToggle />
+      </div>
+
+      <div className="glass-panel relative z-10 w-full max-w-md px-6 py-8 md:px-8">
+        <div className="mb-6 flex items-center gap-3">
+          <HijLogo size={44} priority className="ring-1 ring-ink/10" />
+          <div>
+            <div className="text-[18px] font-medium tracking-[-0.02em] text-ink">
+              HIJ Cue
+            </div>
+            <div className="font-mono text-[11px] tracking-[0.12em] text-ink-2 uppercase">
+              Media · Worship · Production
+            </div>
+          </div>
+        </div>
+
+        <h1 className="text-[28px] font-medium tracking-[-0.02em] text-ink md:text-[32px]">
           Who are you?
-        </h2>
-        <p className="mt-2 max-w-[40ch] text-[15px] leading-relaxed text-ink-2">
+        </h1>
+        <p className="mt-2 text-[15px] leading-relaxed text-ink-2">
           Pick your name to open your tasks. No password needed for the team
           view.
         </p>
 
-        <div className="mt-8">
+        <div className="mt-7">
           <Select onValueChange={(id) => setMeId(id)}>
-            <SelectTrigger className="h-12 w-full bg-white text-[15px]">
+            <SelectTrigger className="glass-surface h-12 w-full border-white/80 text-[15px] backdrop-blur-xl dark:border-white/10">
               <SelectValue placeholder="Select your name" />
             </SelectTrigger>
             <SelectContent>
@@ -93,7 +72,7 @@ function PersonPicker({ people }: { people: Person[] }) {
           </Select>
         </div>
 
-        <p className="mt-10 text-[13px] text-ink-2">
+        <p className="mt-8 text-center text-[13px] text-ink-2">
           Admin?{" "}
           <a
             href="/admin/login"
@@ -117,12 +96,7 @@ export function IdentityGate({
   const { me } = useMe();
 
   if (!me) {
-    return (
-      <div className="grid min-h-dvh md:grid-cols-2">
-        <BrandPanel />
-        <PersonPicker people={people} />
-      </div>
-    );
+    return <PersonPicker people={people} />;
   }
 
   return <>{children}</>;
@@ -140,9 +114,9 @@ export function MeAvatar({ onSwitch }: { onSwitch?: () => void }) {
         if (onSwitch) onSwitch();
         else setMeId(null);
       }}
-      className="grid size-8 place-items-center rounded-full border border-white/35 font-mono text-[11px] font-medium text-white transition-colors hover:bg-white/10"
+      className="rounded-full transition-opacity hover:opacity-80"
     >
-      {initials(me.name)}
+      <PersonAvatar person={me} size={32} />
     </button>
   );
 }

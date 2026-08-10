@@ -1,26 +1,20 @@
-import { getAttachments, getComments, getPeople, getTasks } from "@/lib/data";
+import { getBannerMessage, getEvents, getPeople, getTaskExtras, getTasks } from "@/lib/data";
 import { MeProvider } from "@/components/cue/me-provider";
 import { IdentityGate } from "@/components/cue/identity-gate";
 import { CueApp } from "@/components/cue/cue-app";
-import type { Attachment, Comment } from "@/lib/types";
+import { FloatingListen } from "@/components/floating-listen";
 
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const [people, tasks] = await Promise.all([getPeople(), getTasks()]);
-
-  const commentsByTask: Record<string, Comment[]> = {};
-  const attachmentsByTask: Record<string, Attachment[]> = {};
-
-  await Promise.all(
-    tasks.map(async (task) => {
-      const [comments, attachments] = await Promise.all([
-        getComments(task.id),
-        getAttachments(task.id),
-      ]);
-      commentsByTask[task.id] = comments;
-      attachmentsByTask[task.id] = attachments;
-    })
+  const [people, tasks, bannerMessage, events] = await Promise.all([
+    getPeople(),
+    getTasks(),
+    getBannerMessage(),
+    getEvents(),
+  ]);
+  const { commentsByTask, attachmentsByTask } = await getTaskExtras(
+    tasks.map((t) => t.id)
   );
 
   return (
@@ -31,8 +25,11 @@ export default async function HomePage() {
           tasks={tasks}
           commentsByTask={commentsByTask}
           attachmentsByTask={attachmentsByTask}
+          bannerMessage={bannerMessage}
+          events={events}
         />
       </IdentityGate>
+      <FloatingListen />
     </MeProvider>
   );
 }

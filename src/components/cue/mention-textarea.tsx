@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Textarea } from "@/components/ui/textarea";
-import { initials } from "@/lib/format";
+import { PersonAvatar } from "@/components/person-avatar";
 import { cn } from "@/lib/utils";
 import type { Person } from "@/lib/types";
 
@@ -40,6 +40,12 @@ export function MentionTextarea({
   const ref = useRef<HTMLTextAreaElement>(null);
   const [mention, setMention] = useState<MentionState>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const mentionKey = mention ? `${mention.start}:${mention.query}` : "";
+  const [indexForKey, setIndexForKey] = useState(mentionKey);
+  if (indexForKey !== mentionKey) {
+    setIndexForKey(mentionKey);
+    setActiveIndex(0);
+  }
 
   const suggestions = useMemo(() => {
     if (!mention) return [];
@@ -52,10 +58,6 @@ export function MentionTextarea({
       })
       .slice(0, 6);
   }, [mention, people]);
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [mention?.query, mention?.start]);
 
   function updateMentionFromEl(el: HTMLTextAreaElement) {
     setMention(getMentionAtCursor(el.value, el.selectionStart ?? 0));
@@ -126,7 +128,7 @@ export function MentionTextarea({
 
       {mention && suggestions.length > 0 ? (
         <div
-          className="absolute right-0 bottom-[calc(100%+6px)] left-0 z-50 overflow-hidden rounded-[14px] border border-ink/10 bg-white/95 shadow-[0_12px_40px_rgba(16,23,41,0.16)] backdrop-blur-xl"
+          className="glass-panel absolute right-0 bottom-[calc(100%+6px)] left-0 z-50 overflow-hidden shadow-[0_12px_40px_rgba(16,23,41,0.16)]"
           role="listbox"
           aria-label="Mention someone"
         >
@@ -146,9 +148,7 @@ export function MentionTextarea({
               }}
               onMouseEnter={() => setActiveIndex(i)}
             >
-              <div className="grid size-8 shrink-0 place-items-center rounded-full bg-ink/8 font-mono text-[11px] text-ink-2">
-                {initials(p.name)}
-              </div>
+              <PersonAvatar person={p} size={32} />
               <div className="min-w-0">
                 <div className="truncate text-[14px] font-medium text-ink">
                   {p.name}

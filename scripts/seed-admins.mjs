@@ -38,7 +38,7 @@ const supabase = createClient(url, serviceKey, {
 const admins = [
   {
     slug: "anish",
-    email: "anish@hij.church",
+    email: "pr.anish@hij.church",
     name: "Pastor Anish",
   },
   {
@@ -97,4 +97,4 @@ for (const admin of admins) {
 
 console.log("\nAdmin seed complete.");
 console.log(`Password for all admins: ${password}`);
-console.log("Emails: anish@hij.church, sushma@hij.church, deepak@hij.church");
+console.log("Emails: pr.anish@hij.church, sushma@hij.church, deepak@hij.church");

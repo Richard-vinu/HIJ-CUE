@@ -26,7 +26,7 @@ Stack: Next.js · Supabase · shadcn/ui · Vercel-ready
    ```
 
    Creates / resets:
-   - `anish@hij.church`
+   - `pr.anish@hij.church`
    - `sushma@hij.church`
    - `deepak@hij.church`  
    Password: `CueAdmin2026!` (override with `ADMIN_SEED_PASSWORD`)
