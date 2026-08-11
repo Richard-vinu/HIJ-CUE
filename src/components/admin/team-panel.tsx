@@ -831,7 +831,7 @@ export function AdminTeamPanel({
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="glass-surface"
-                placeholder="name@hij.church"
+                placeholder="name@hij.com"
                 autoComplete="email"
               />
             </Field>

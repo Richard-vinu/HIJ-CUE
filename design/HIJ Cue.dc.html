@@ -37,7 +37,7 @@
     <h2 style="font-size:22px;font-weight:500;margin:22px 0 6px;letter-spacing:-0.01em">Sign in to HIJ Cue</h2>
     <p style="font-size:14px;color:#5A6172;margin:0 0 28px">Media, worship and production team.</p>
     <label style="font-size:13px;font-weight:500;margin-bottom:6px" for="cue-email">Email</label>
-    <input id="cue-email" type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="prasthuthi@hij.church" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;padding:0 12px;font-family:Archivo,sans-serif;font-size:15px;color:#101729;background:#fff;margin-bottom:16px" />
+    <input id="cue-email" type="email" value="{{ email }}" onChange="{{ onEmail }}" placeholder="prasthuthi@hij.com" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;padding:0 12px;font-family:Archivo,sans-serif;font-size:15px;color:#101729;background:#fff;margin-bottom:16px" />
     <label style="font-size:13px;font-weight:500;margin-bottom:6px" for="cue-pw">Password</label>
     <input id="cue-pw" type="password" value="{{ pw }}" onChange="{{ onPw }}" style="height:46px;border:1px solid #C1C4C9;border-radius:6px;padding:0 12px;font-family:Archivo,sans-serif;font-size:15px;color:#101729;background:#fff" />
     <sc-if value="{{ signinError }}" hint-placeholder-val="{{ false }}"><div style="font-size:13px;color:#8C3B34;margin-top:8px">{{ signinError }}</div></sc-if>
@@ -250,7 +250,7 @@ const PEOPLE = [
   { id: 'nikhil', name: 'Nikhil' },
   { id: 'deepak', name: 'Deepak', admin: true },
   { id: 'asher', name: 'Asher' },
-].map(p => ({ ...p, email: p.id + '@hij.church' }));
+].map(p => ({ ...p, email: p.id + '@hij.com' }));
 
 const SEED = [
   { id: 1, title: 'Song list in running order', assignee: 'prasthuthi', due: '2026-08-07', status: 'To do',

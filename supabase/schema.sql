@@ -166,15 +166,15 @@ create policy "task_files_update" on storage.objects
 -- Fixed IDs for stable seed / admin linking
 insert into public.people (id, slug, name, email, is_admin, is_super_admin) values
   ('11111111-1111-1111-1111-111111111001', 'anish', 'Pastor Anish', 'pr.anish@hij.com', true, true),
-  ('11111111-1111-1111-1111-111111111002', 'baji', 'Baji', 'baji@hij.church', false, false),
-  ('11111111-1111-1111-1111-111111111003', 'elvin', 'Elvin', 'elvin@hij.church', false, false),
-  ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.church', false, false),
-  ('11111111-1111-1111-1111-111111111005', 'jeswin', 'Jeswin', 'jeswin@hij.church', false, false),
-  ('11111111-1111-1111-1111-111111111006', 'prasthuthi', 'Prasthuthi', 'prasthuthi@hij.church', false, false),
-  ('11111111-1111-1111-1111-111111111007', 'sushma', 'Sushma', 'sushma@hij.church', true, false),
-  ('11111111-1111-1111-1111-111111111008', 'nikhil', 'Nikhil', 'nikhil@hij.church', false, false),
-  ('11111111-1111-1111-1111-111111111009', 'deepak', 'Deepak', 'deepak@hij.church', true, false),
-  ('11111111-1111-1111-1111-111111111010', 'asher', 'Asher', 'asher@hij.church', false, false)
+  ('11111111-1111-1111-1111-111111111002', 'baji', 'Baji', 'baji@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111003', 'elvin', 'Elvin', 'elvin@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111005', 'jeswin', 'Jeswin', 'jeswin@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111006', 'prasthuthi', 'Prasthuthi', 'prasthuthi@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111007', 'sushma', 'Sushma', 'sushma@hij.com', true, false),
+  ('11111111-1111-1111-1111-111111111008', 'nikhil', 'Nikhil', 'nikhil@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111009', 'deepak', 'Deepak', 'deepak@hij.com', true, false),
+  ('11111111-1111-1111-1111-111111111010', 'asher', 'Asher', 'asher@hij.com', false, false)
 on conflict (slug) do update set
   name = excluded.name,
   email = excluded.email,

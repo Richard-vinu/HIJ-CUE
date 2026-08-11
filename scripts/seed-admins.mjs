@@ -35,6 +35,13 @@ const supabase = createClient(url, serviceKey, {
   realtime: { transport: WebSocket },
 });
 
+function toHijCom(email) {
+  return String(email || "")
+    .trim()
+    .toLowerCase()
+    .replace(/@hij\.church$/i, "@hij.com");
+}
+
 const admins = [
   {
     slug: "anish",
@@ -44,13 +51,15 @@ const admins = [
   },
   {
     slug: "sushma",
-    email: "sushma@hij.church",
+    email: "sushma@hij.com",
     name: "Sushma",
+    previousEmails: ["sushma@hij.church"],
   },
   {
     slug: "deepak",
-    email: "deepak@hij.church",
+    email: "deepak@hij.com",
     name: "Deepak",
+    previousEmails: ["deepak@hij.church"],
   },
 ];
 
@@ -119,10 +128,36 @@ async function ensureAdmin(admin) {
   console.log(`Linked ${admin.slug} → ${user.id}`);
 }
 
+/** Move every people.email from @hij.church → @hij.com */
+async function migratePeopleEmails() {
+  const { data: people, error } = await supabase
+    .from("people")
+    .select("id, slug, email");
+  if (error) throw error;
+
+  let updated = 0;
+  for (const person of people || []) {
+    const next = toHijCom(person.email);
+    if (!next || next === String(person.email || "").trim().toLowerCase()) {
+      continue;
+    }
+    const { error: upErr } = await supabase
+      .from("people")
+      .update({ email: next })
+      .eq("id", person.id);
+    if (upErr) throw upErr;
+    updated += 1;
+    console.log(`people email: ${person.email} → ${next}`);
+  }
+  console.log(`Migrated ${updated} people email(s) to @hij.com`);
+}
+
+await migratePeopleEmails();
+
 for (const admin of admins) {
   await ensureAdmin(admin);
 }
 
 console.log("\nAdmin seed complete.");
 console.log(`Password for all admins: ${password}`);
-console.log("Emails: pr.anish@hij.com, sushma@hij.church, deepak@hij.church");
+console.log("Emails: pr.anish@hij.com, sushma@hij.com, deepak@hij.com");
