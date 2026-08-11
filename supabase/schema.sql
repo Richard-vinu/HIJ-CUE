@@ -165,7 +165,7 @@ create policy "task_files_update" on storage.objects
 
 -- Fixed IDs for stable seed / admin linking
 insert into public.people (id, slug, name, email, is_admin, is_super_admin) values
-  ('11111111-1111-1111-1111-111111111001', 'anish', 'Pastor Anish', 'pr.anish@hij.church', true, true),
+  ('11111111-1111-1111-1111-111111111001', 'anish', 'Pastor Anish', 'pr.anish@hij.com', true, true),
   ('11111111-1111-1111-1111-111111111002', 'baji', 'Baji', 'baji@hij.church', false, false),
   ('11111111-1111-1111-1111-111111111003', 'elvin', 'Elvin', 'elvin@hij.church', false, false),
   ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.church', false, false),

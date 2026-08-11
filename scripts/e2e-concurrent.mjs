@@ -11,7 +11,7 @@ import { resolve } from "node:path";
 import WebSocket from "ws";
 
 const BASE = process.env.CUE_BASE_URL || "http://localhost:3000";
-const ADMIN_EMAIL = process.env.ADMIN_E2E_EMAIL || "pr.anish@hij.church";
+const ADMIN_EMAIL = process.env.ADMIN_E2E_EMAIL || "pr.anish@hij.com";
 const ADMIN_PASSWORD = process.env.ADMIN_E2E_PASSWORD || "CueAdmin2026!";
 
 function loadEnv() {

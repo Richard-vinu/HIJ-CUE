@@ -4,8 +4,8 @@ alter table public.people
 
 update public.people
 set is_admin = true, is_super_admin = true
-where slug = 'anish' or email = 'pr.anish@hij.church';
+where slug = 'anish' or email = 'pr.anish@hij.com';
 
 update public.people
 set is_super_admin = false
-where slug <> 'anish' and email <> 'pr.anish@hij.church';
+where slug <> 'anish' and email <> 'pr.anish@hij.com';

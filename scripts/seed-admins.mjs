@@ -38,8 +38,9 @@ const supabase = createClient(url, serviceKey, {
 const admins = [
   {
     slug: "anish",
-    email: "pr.anish@hij.church",
+    email: "pr.anish@hij.com",
     name: "Pastor Anish",
+    previousEmails: ["pr.anish@hij.church"],
   },
   {
     slug: "sushma",
@@ -61,6 +62,29 @@ async function ensureAdmin(admin) {
   let user = listed.users.find(
     (u) => u.email?.toLowerCase() === admin.email.toLowerCase()
   );
+
+  // Migrate from a previous email if the new one doesn’t exist yet
+  if (!user && admin.previousEmails?.length) {
+    for (const oldEmail of admin.previousEmails) {
+      const legacy = listed.users.find(
+        (u) => u.email?.toLowerCase() === oldEmail.toLowerCase()
+      );
+      if (!legacy) continue;
+      const { data, error } = await supabase.auth.admin.updateUserById(
+        legacy.id,
+        {
+          email: admin.email,
+          password,
+          email_confirm: true,
+          user_metadata: { name: admin.name, slug: admin.slug },
+        }
+      );
+      if (error) throw error;
+      user = data.user;
+      console.log(`Migrated auth email: ${oldEmail} → ${admin.email}`);
+      break;
+    }
+  }
 
   if (!user) {
     const { data, error } = await supabase.auth.admin.createUser({
@@ -84,7 +108,11 @@ async function ensureAdmin(admin) {
 
   const { error: linkError } = await supabase
     .from("people")
-    .update({ auth_user_id: user.id, is_admin: true })
+    .update({
+      auth_user_id: user.id,
+      is_admin: true,
+      email: admin.email,
+    })
     .eq("slug", admin.slug);
 
   if (linkError) throw linkError;
@@ -97,4 +125,4 @@ for (const admin of admins) {
 
 console.log("\nAdmin seed complete.");
 console.log(`Password for all admins: ${password}`);
-console.log("Emails: pr.anish@hij.church, sushma@hij.church, deepak@hij.church");
+console.log("Emails: pr.anish@hij.com, sushma@hij.church, deepak@hij.church");
