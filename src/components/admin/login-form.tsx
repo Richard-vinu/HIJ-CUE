@@ -91,7 +91,7 @@ export function AdminLoginForm() {
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="pr.anish@hij.com"
+              placeholder="Email"
               className="glass-surface h-12 border-white/80 dark:border-white/10"
               required
             />
