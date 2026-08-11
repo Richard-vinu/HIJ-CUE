@@ -43,8 +43,8 @@ export async function signInAdmin(email: string, password: string) {
 
 export async function signOutAdmin() {
   const supabase = await createClient();
-  await supabase.auth.signOut();
-  revalidatePath("/admin");
+  // Local scope clears cookies without a slow remote revoke round-trip.
+  await supabase.auth.signOut({ scope: "local" });
   redirect("/admin/login");
 }
 

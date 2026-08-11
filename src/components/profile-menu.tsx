@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import Link from "next/link";
 import { LogOutIcon, UserRoundIcon, ListIcon, SmileIcon, CalendarDaysIcon } from "lucide-react";
-import { signOutAdmin } from "@/actions/cue";
+import { createClient } from "@/lib/supabase/client";
 import { AvatarPickerDialog } from "@/components/avatar-picker";
 import { PersonAvatar } from "@/components/person-avatar";
 import { useMe } from "@/components/cue/me-provider";
@@ -95,14 +95,27 @@ export function AdminProfileMenu({
   className?: string;
 }) {
   const [pickerOpen, setPickerOpen] = useState(false);
+  const [pending, startTransition] = useTransition();
+
+  function onSignOut() {
+    startTransition(async () => {
+      const supabase = createClient();
+      // Clear local session cookies immediately — no remote revoke wait.
+      await supabase.auth.signOut({ scope: "local" });
+      // Hard navigate so login paints without waiting on a server-action RSC round-trip.
+      window.location.assign("/admin/login");
+    });
+  }
 
   return (
     <>
       <DropdownMenu>
         <DropdownMenuTrigger
+          disabled={pending}
           className={cn(
             "inline-flex items-center gap-2 rounded-full outline-none transition-opacity hover:opacity-90 focus-visible:ring-2 focus-visible:ring-ring/40",
-            className
+            className,
+            pending && "opacity-60"
           )}
         >
           <PersonAvatar person={person} size={32} />
@@ -148,13 +161,14 @@ export function AdminProfileMenu({
           <DropdownMenuItem
             variant="destructive"
             className="cursor-pointer"
+            disabled={pending}
             onSelect={(e) => {
               e.preventDefault();
-              void signOutAdmin();
+              onSignOut();
             }}
           >
             <LogOutIcon className="size-4" />
-            Sign out
+            {pending ? "Signing out…" : "Sign out"}
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
