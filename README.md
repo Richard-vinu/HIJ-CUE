@@ -27,8 +27,8 @@ Stack: Next.js · Supabase · shadcn/ui · Vercel-ready
 
    Creates / resets:
    - `pr.anish@hij.com` → `CueAdmin2026!`
-   - `sushma@hij.com` → `CueAdmin2026!Su`
-   - `deepak@hij.com` → `CueAdmin2026!De`  
+   - `sushma@hij.com` → `CueAdmin2026Su!`
+   - `deepak@hij.com` → `CueAdmin2026De!`  
    (override with `ADMIN_SEED_PASSWORD`, `ADMIN_SEED_PASSWORD_SUSHMA`, `ADMIN_SEED_PASSWORD_DEEPAK`)
 
 4. **Env already set** (publishable):

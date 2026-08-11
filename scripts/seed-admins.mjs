@@ -54,14 +54,14 @@ const admins = [
     slug: "sushma",
     email: "sushma@hij.com",
     name: "Sushma",
-    password: process.env.ADMIN_SEED_PASSWORD_SUSHMA || "CueAdmin2026!Su",
+    password: process.env.ADMIN_SEED_PASSWORD_SUSHMA || "CueAdmin2026Su!",
     previousEmails: ["sushma@hij.church"],
   },
   {
     slug: "deepak",
     email: "deepak@hij.com",
     name: "Deepak",
-    password: process.env.ADMIN_SEED_PASSWORD_DEEPAK || "CueAdmin2026!De",
+    password: process.env.ADMIN_SEED_PASSWORD_DEEPAK || "CueAdmin2026De!",
     previousEmails: ["deepak@hij.church"],
   },
 ];
