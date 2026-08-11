@@ -700,7 +700,7 @@ export function AdminTasksPanel({
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectItem value="all">Anyone</SelectItem>
+                <SelectItem value="all">All</SelectItem>
                 {people.map((p) => (
                   <SelectItem key={p.id} value={p.id}>
                     {p.name}

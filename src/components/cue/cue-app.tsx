@@ -437,11 +437,11 @@ export function CueApp({
   const filters = (
     <Select value={fAssignee} onValueChange={setFAssignee}>
       <SelectTrigger className="glass-surface h-8 w-[160px] border-white/70 text-[13px] dark:border-white/10">
-        <SelectValue placeholder="Anyone" />
+        <SelectValue placeholder="All" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectItem value="all">Anyone</SelectItem>
+          <SelectItem value="all">All</SelectItem>
           {people.map((p) => (
             <SelectItem key={p.id} value={p.id}>
               {p.name}
@@ -969,11 +969,11 @@ export function CueApp({
               <div className="mb-4 flex gap-2">
                 <Select value={fAssignee} onValueChange={setFAssignee}>
                   <SelectTrigger className="glass-surface h-10 flex-1 border-white/70 backdrop-blur-xl dark:border-white/10">
-                    <SelectValue placeholder="Anyone" />
+                    <SelectValue placeholder="All" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectGroup>
-                      <SelectItem value="all">Anyone</SelectItem>
+                      <SelectItem value="all">All</SelectItem>
                       {people.map((p) => (
                         <SelectItem key={p.id} value={p.id}>
                           {p.name}
