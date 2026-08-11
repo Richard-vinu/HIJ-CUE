@@ -21,7 +21,7 @@ loadEnv();
 
 const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const password = process.env.ADMIN_SEED_PASSWORD || "CueAdmin2026!";
+const defaultPassword = process.env.ADMIN_SEED_PASSWORD || "CueAdmin2026!";
 
 if (!url || !serviceKey) {
   console.error(
@@ -47,23 +47,27 @@ const admins = [
     slug: "anish",
     email: "pr.anish@hij.com",
     name: "Pastor Anish",
+    password: process.env.ADMIN_SEED_PASSWORD_ANISH || defaultPassword,
     previousEmails: ["pr.anish@hij.church"],
   },
   {
     slug: "sushma",
     email: "sushma@hij.com",
     name: "Sushma",
+    password: process.env.ADMIN_SEED_PASSWORD_SUSHMA || "CueAdmin2026!Su",
     previousEmails: ["sushma@hij.church"],
   },
   {
     slug: "deepak",
     email: "deepak@hij.com",
     name: "Deepak",
+    password: process.env.ADMIN_SEED_PASSWORD_DEEPAK || "CueAdmin2026!De",
     previousEmails: ["deepak@hij.church"],
   },
 ];
 
 async function ensureAdmin(admin) {
+  const password = admin.password;
   const { data: listed, error: listError } =
     await supabase.auth.admin.listUsers({ perPage: 200 });
   if (listError) throw listError;
@@ -159,5 +163,6 @@ for (const admin of admins) {
 }
 
 console.log("\nAdmin seed complete.");
-console.log(`Password for all admins: ${password}`);
-console.log("Emails: pr.anish@hij.com, sushma@hij.com, deepak@hij.com");
+for (const admin of admins) {
+  console.log(`- ${admin.email}`);
+}
