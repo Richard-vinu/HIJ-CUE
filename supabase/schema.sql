@@ -168,7 +168,7 @@ insert into public.people (id, slug, name, email, is_admin, is_super_admin) valu
   ('11111111-1111-1111-1111-111111111001', 'anish', 'Pastor Anish', 'pr.anish@hij.com', true, true),
   ('11111111-1111-1111-1111-111111111002', 'baji', 'Baji', 'baji@hij.com', false, false),
   ('11111111-1111-1111-1111-111111111003', 'elvin', 'Elvin', 'elvin@hij.com', false, false),
-  ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.com', false, false),
+  ('11111111-1111-1111-1111-111111111004', 'jayashree', 'Jayashree', 'jayashree@hij.com', true, false),
   ('11111111-1111-1111-1111-111111111005', 'jeswin', 'Jeswin', 'jeswin@hij.com', false, false),
   ('11111111-1111-1111-1111-111111111006', 'prasthuthi', 'Prasthuthi', 'prasthuthi@hij.com', false, false),
   ('11111111-1111-1111-1111-111111111007', 'sushma', 'Sushma', 'sushma@hij.com', true, false),

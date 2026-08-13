@@ -64,6 +64,13 @@ const admins = [
     password: process.env.ADMIN_SEED_PASSWORD_DEEPAK || "CueAdmin2026De!",
     previousEmails: ["deepak@hij.church"],
   },
+  {
+    slug: "jayashree",
+    email: "jayashree@hij.com",
+    name: "Jayashree",
+    password: process.env.ADMIN_SEED_PASSWORD_JAYASHREE || "CueAdmin2026Ja!",
+    previousEmails: ["jayashree@hij.church"],
+  },
 ];
 
 async function ensureAdmin(admin) {
