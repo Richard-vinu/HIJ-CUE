@@ -11,14 +11,22 @@ function subscribe() {
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme, resolvedTheme } = useTheme();
+  // false on server + during hydration; true only after client mounts
   const mounted = useSyncExternalStore(subscribe, () => true, () => false);
   const isDark = (resolvedTheme ?? theme) === "dark";
 
   return (
     <button
       type="button"
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      title={isDark ? "Light mode" : "Dark mode"}
+      // Keep labels/icons theme-agnostic until mounted so SSR HTML matches hydration.
+      aria-label={
+        !mounted
+          ? "Toggle color theme"
+          : isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+      }
+      title={!mounted ? "Theme" : isDark ? "Light mode" : "Dark mode"}
       disabled={!mounted}
       onClick={() => setTheme(isDark ? "light" : "dark")}
       className={cn(
@@ -26,7 +34,9 @@ export function ThemeToggle({ className }: { className?: string }) {
         className
       )}
     >
-      {mounted && isDark ? (
+      {!mounted ? (
+        <MoonIcon className="size-[15px]" strokeWidth={1.75} />
+      ) : isDark ? (
         <SunIcon className="size-[15px]" strokeWidth={1.75} />
       ) : (
         <MoonIcon className="size-[15px]" strokeWidth={1.75} />

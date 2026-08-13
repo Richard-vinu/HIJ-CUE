@@ -37,7 +37,7 @@ type HijBrandLockupProps = {
 export function HijBrandLockup({
   markSize = 40,
   title = "HIJ Cue",
-  subtitle,
+  subtitle = "White Clouds Media",
   className,
   titleClassName,
   subtitleClassName,

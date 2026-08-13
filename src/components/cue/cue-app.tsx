@@ -717,8 +717,13 @@ export function CueApp({
       <aside className="glass-rail flex w-[236px] shrink-0 flex-col gap-[22px] border-r-[0.5px] border-ink/10 px-3.5 py-[18px]">
         <div className="flex items-center gap-2.5 px-1.5">
           <HijLogo size={40} priority />
-          <div className="text-[17px] font-medium tracking-[-0.02em] text-ink">
-            HIJ Cue
+          <div className="min-w-0">
+            <div className="text-[17px] font-medium tracking-[-0.02em] text-ink">
+              HIJ Cue
+            </div>
+            <div className="mt-1 font-mono text-[10px] tracking-[0.1em] text-ink-2 uppercase">
+              White Clouds Media
+            </div>
           </div>
         </div>
 

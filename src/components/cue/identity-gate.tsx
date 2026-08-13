@@ -41,7 +41,7 @@ function PersonPicker({ people }: { people: Person[] }) {
               HIJ Cue
             </div>
             <div className="font-mono text-[11px] tracking-[0.12em] text-ink-2 uppercase">
-              Media · Worship · Production
+              White Clouds Media
             </div>
           </div>
         </div>
